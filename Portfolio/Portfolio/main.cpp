@@ -1,11 +1,15 @@
 // Portfolio - Logo
-#include "Header.h"
+#include "Headers.h"
+#include "MainUpdate.h"
 
 int main(void)
 {
 	system("title ±Ë¿Á«ı - 1945");	
 
-	system("mode con cols=120 lines=30");
+	system("mode con cols=60 lines=50");
+
+	MainUpdate Main;
+	Main.Initialize();
 
 	ULONGLONG Time = GetTickCount64(); 
 
@@ -17,8 +21,8 @@ int main(void)
 
 			system("cls");
 
-
-
+			Main.Update();
+			Main.Render();
 		}
 	}
 	return 0;

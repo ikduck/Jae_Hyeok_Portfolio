@@ -4,17 +4,19 @@
 
 #include "ObjectManager.h"
 #include "Player.h"
-#include"Enemy.h"
+#include "Enemy.h"
 #include "Bullet.h"
 
 #include "ObjectFactory.h"
-Logo::Logo() { }
+#include"CursorManager.h"
 
+Logo::Logo() { }
 Logo::~Logo() { }
 
 void Logo::Initialize()
 {
 	ObjectManager::GetInstance()->AddObject(ObjectFactory<Player>::CreateObject());
+	SceneManager::GetInstance()->SetScene(SCENEID::STAGE);
 }
 
 void Logo::Update()
@@ -36,14 +38,14 @@ void Logo::Release()
 {
 }
 /*
-(char*)" #@@@@@     !@@@@@@@@#;          $@@,      ;@@@@@@@@@@!		"   
-(char*)" =$$#@@    ;@@@=, ~$@@@:        -@@=       !@@#$$$$$$$;    			  "
-(char*)"    .@@   -@@#-     -@@#       .$@#,       !@$.            								 "
-(char*)"    .@@   @@@        .@@!      ~@@!        *@=             								 "
-(char*)"    .@@  .@@~         $@@      #@#        .$@=             								  "
-(char*)"    .@@  :@@-         ~@@     =@@-        ,@@=             								 "
-(char*)"    .@@  ;@@-         -@@    -@@*  ...    ,@@:..~;~..      								 "
-(char*)"    .@@  -@@-         ;@@   .$@#,  $@*    ,@@*#@@@@@#;     				   "
+(char*)" #@@@@@     !@@@@@@@@#;          $@@,      ;@@@@@@@@@@!	" 
+(char*)" =$$#@@    ;@@@=, ~$@@@:        -@@=       !@@#$$$$$$$;    			" 
+(char*)"    .@@   -@@#-     -@@#       .$@#,       !@$.            							 "
+(char*)"    .@@   @@@        .@@!      ~@@!        *@=             							 "
+(char*)"    .@@  .@@~         $@@      #@#        .$@=             							  "
+(char*)"    .@@  :@@-         ~@@     =@@-        ,@@=             							 "
+(char*)"    .@@  ;@@-         -@@    -@@*  ...    ,@@:..~;~..      							 "
+(char*)"    .@@  -@@-         ;@@   .$@#,  $@*    ,@@*#@@@@@#;     			   "
 (char*)"    .@@   @@*         @@$   ~@@*   $@*    -@@@@@@@@@@@=.			  "
 (char*)"    .@@   =@@-      .=@@    @@@    $@*    !@@@$-   -=@@!   					"
 (char*)"    .@@    #@@!.   .$@@!   =@@-    $@*    #@@$.      !@@:  					  "
