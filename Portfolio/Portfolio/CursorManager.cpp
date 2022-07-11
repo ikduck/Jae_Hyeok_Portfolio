@@ -143,3 +143,4 @@ void CursorManager::SetColor(int _Color)
 	SetConsoleTextAttribute(hBuffer[BufferIndex], _Color);
 }
 
+

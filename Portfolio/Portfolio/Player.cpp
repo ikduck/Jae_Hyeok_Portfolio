@@ -23,11 +23,11 @@ void Player::Initialize()
 		 Buffer[1][0] = (char*)"¦©";
 	*/ 
 
-	// Buffer[0] = (char*)"¦«¦«¦«";
-	// Buffer[1] = (char*)"¦²¦¡¦©";
+	 Buffer[0] = (char*)"¦«¦«¦«";
+	 Buffer[1] = (char*)"¦²¦¡¦©";
 
-	Buffer[0] = (char*)" ¦« ";
-	Buffer[1] = (char*)" ¦ª ";
+	// Buffer[0] = (char*)" ¦« ";
+	// Buffer[1] = (char*)" ¦ª ";
 	//¦¡¦¢¦¡
 	//¦¢¦¡¦¢
 
@@ -36,7 +36,7 @@ void Player::Initialize()
 
 	TransInfo.Position = Vector3(30.0f, 45.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(2.0f, 2.0f);
+	TransInfo.Scale = Vector3(3.0f, 3.0f);
 	TransInfo.Direction = Vector3(0.0f, 0.0f);;
 
 	Color = 15;

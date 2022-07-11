@@ -73,6 +73,9 @@
     <Filter Include="소스 파일\03. UserInterface\ScrollBox">
       <UniqueIdentifier>{75ce5716-b957-419f-8359-853271ea3d98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Scene\Logo\intro">
+      <UniqueIdentifier>{4b5127bc-e7ad-4b87-83b8-c9b836545ff3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

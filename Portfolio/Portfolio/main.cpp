@@ -1,6 +1,7 @@
 // Portfolio - Logo
 #include "Headers.h"
 #include "MainUpdate.h"
+// C언어 = 수학
 
 int main(void)
 {
@@ -25,6 +26,7 @@ int main(void)
 			Main.Render();
 		}
 	}
+
 	return 0;
 }
 
@@ -34,3 +36,5 @@ int main(void)
 // Scene에 비행기 마다 화면 출력?
 // Stage 에서 점수, 목숨, 아이템(궁극기)
 // 총알 위로 발사 , 적 총알은 아래로 
+
+// 구조를 완벽하게 이해한다고해도 에러가 너무 많이뜸;;
