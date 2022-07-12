@@ -1,41 +1,55 @@
 #include "Stage.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "ScrollBox.h"
 #include "SceneManager.h"
-#include "CollisionManager.h"
-#include "InputManager.h"
-#include "CursorManager.h"
 #include "ObjectManager.h"
+#include "Player.h"
+#include "CursorManager.h"
+#include "Bullet.h"
+#include "Enemy.h"
+#include "CollisionManager.h"
 #include "ObjectFactory.h"
+#include "InputManager.h"
+#include "ScrollBox.h"
+#include"ObjectPool.h"
+#include "Prototype.h"
+#include "Player1.h"
+#include "Enemy1.h"
 
-Stage::Stage() : Check(0) { }
+Stage::Stage() : Check() { }
 Stage::~Stage() { Release(); }
-
 
 void Stage::Initialize()
 {
 	Check = 0;
 
-	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
-
-	pUI = new ScrollBox;
-	pUI->Initialize();
+	ObjectManager::GetInstance()->AddObject("Player");
+	// 한번만 실행시켜주면 되서 update에 있을 필요가없음
+	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
 
 	for (int i = 0; i < 5; ++i)
 	{
 		srand(DWORD(GetTickCount64() * (i + 1)));
 
-		Object* pEnemy = pEnemyProto->Clone();
-		//pEnemy->SetPosition(118.0f, float(rand() % 30));
-		pEnemy->SetPosition(float(rand() % 60), float(rand() % 45));
+		// ObjectManager::GetInstance()->AddObject("Enemy");
+		Bridge* pBridge = new Enemy1;
+		ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
+		eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
 
-		ObjectManager::GetInstance()->AddObject(pEnemy);
+		eEnemy->SetPosition((float)(rand() % 78), 0.0f ); //(float)(rand() % 10)
 	}
+
+	pUI = new ScrollBox;
+	pUI->Initialize();
+
+
 }
 
 void Stage::Update()
 {
+
+
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_TAB)
@@ -43,19 +57,24 @@ void Stage::Update()
 		Enable_UI();
 	}
 
+	if (dwKey & KEY_ESCAPE)
+	{
+		if (pBulletList->size())
+		{
+			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+			pBulletList->pop_back();
+		}
+	}
+
+	// pPlayer->Update();
 	ObjectManager::GetInstance()->Update();
 
-	Object* pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
-
-	// x 좌표가 120 이상으로 갔을때 삭제
 	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin();
 			iter != pBulletList->end(); )
 		{
-			if ((*iter)->GetPosition().y <= -3.0f)
+			if ((*iter)->GetPosition().y <= 0.0f)
 				iter = pBulletList->erase(iter);
 			else
 				++iter;
@@ -72,15 +91,16 @@ void Stage::Update()
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
-
-
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator Bulletiter = pBulletList->begin();
 						Bulletiter != pBulletList->end(); )
 					{
 						if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
+						{
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
+							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다");
+						}
 						else
 							++Bulletiter;
 					}
@@ -102,7 +122,7 @@ void Stage::Render()
 }
 
 void Stage::Release()
-{
+{	
 
 }
 
@@ -110,3 +130,13 @@ void Stage::Enable_UI()
 {
 	Check = !Check;
 }
+
+// 총맞았을때 몬스터 지워지게 하는법
+
+// 충돌해야되는 것들
+// 1. 아이템과 플레이어의 충돌
+// 2. 적과 플레이어의 충돌
+// 3. 적과 플레이어 총알의 충돌
+// 4. 적의 총알과 플레이어의 충돌
+// 충돌하면 안되는 것들
+// 

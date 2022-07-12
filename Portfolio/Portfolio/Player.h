@@ -3,14 +3,21 @@
 
 class Player : public Object
 {
+private:
+	int Color;
+	int Speed;
+	char SelectPlayer;
 public:
-	virtual void Initialize()override;
+	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 
+	char GetPlayer() const { return SelectPlayer;  }
+	void SetScale(char _SelectPlayer) { SelectPlayer = _SelectPlayer; }
+
 	virtual Object* Clone()override { return new Player(*this); }
-public:
+
 	Player();
 	Player(Transform _TransInfo);
 	virtual ~Player();

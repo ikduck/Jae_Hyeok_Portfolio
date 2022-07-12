@@ -4,11 +4,11 @@
 class ScrollBox : public UserInterface
 {
 public:
-	virtual void Initialize()override;
-	virtual int Update()override;
-	virtual void Render()override;
-	virtual void Release()override;
-public:
+	virtual void Initialize();
+	virtual int Update();
+	virtual void Render();
+	virtual void Release();
+
 	ScrollBox();
 	ScrollBox(Transform _TransInfo);
 	virtual ~ScrollBox();

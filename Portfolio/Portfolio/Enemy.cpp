@@ -1,69 +1,51 @@
 #include "Enemy.h"
 #include "CursorManager.h"
+#include "Bridge.h"
 
 Enemy::Enemy() { }
 Enemy::Enemy(Transform _TransInfo) : Object(_TransInfo) { }
-Enemy::~Enemy() { }
+Enemy::~Enemy() { Release(); }
 
-void Enemy::Initialize()
+Object* Enemy::Initialize(string _Key)
 {
-	strKey = "Enemy";
-	/*
-		 Buffer[0][0] = (char*)"└";
-		 Buffer[0][1] = (char*)"┬";
-		 Buffer[0][2] = (char*)"┚";
-		 Buffer[1][0] = (char*)"─";
-		 Buffer[1][1] = (char*)"┼";
-		 Buffer[1][2] = (char*)"─";
-	 */
-	// Buffer[0] = (char*)"└┬┚"; 
-	// Buffer[0] = (char*)"─┼─";	
-	Buffer[0] = (char*)" I "; 
-	Buffer[1] = (char*)" I  ";
-	//└┬┚
-	//─┼─
+	strKey = _Key;
 
+	// Buffer[0] = (char*)"호";
+	// Buffer[1] = (char*)"ㅅ";
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
-	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(2.0f, 2.0f);
+	TransInfo.Rotation = Vector3(0.0f, 0.0f); 
+ 	// TransInfo.Scale = Vector3((float)strlen(Buffer[0]),(float)MAX_SIZE);
+	TransInfo.Scale = Vector3(3.0f, 3.0f);
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
-	Color = 20;
+
+
+	return this;
 }
 
 
 int Enemy::Update()
 {
-	//TransInfo.Position.x -= 2;
-
-	if (TransInfo.Position.x <= 0)
-		return BUFFER_OVER;
+	// TransInfo.Position.x -= 2;
+	/*
+	 if (TransInfo.Position.x <= 0)
+	 	return BUFFER_OVER;
+	*/
+	if (pBridge)
+		pBridge->Update(TransInfo);
 
 	return 0;
 }
 
 void Enemy::Render()
-{
-	// for (int i = 0; i < MAX_SIZE; ++i)
-	// {
-	// 	for (int j = 0; j < MAX_SIZE; ++j)
-	// 	{
-	// 		CursorManager::GetInstance()->WriteBuffer(
-	// 			TransInfo.Position.x,
-	// 			TransInfo.Position.y + i,
-	// 			Buffer[i][j], Color);
-	// 	}
-	// }
-	for (int i = 0; i < MAX_SIZE; ++i)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x,
-			TransInfo.Position.y + i,
-			Buffer[i], Color);
-	}
+{	
+	if (pBridge)
+		pBridge->Render();
 }
 
 void Enemy::Release()
 {
-
+	::Safe_Delete(pBridge);
 }
+
+// 삭제방법은 여러가지가 있음 - stage에서 지울수도있고 

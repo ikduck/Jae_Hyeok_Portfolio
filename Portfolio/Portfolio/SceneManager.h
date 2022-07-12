@@ -5,9 +5,8 @@ class Scene;
 class SceneManager
 {
 private:
+	// ΩÃ±€≈Ê ∆–≈œ
 	static SceneManager* Instance; 
-	SceneManager();
-	Scene* SceneState;
 public:
 	static SceneManager* GetInstance()
 	{
@@ -17,12 +16,17 @@ public:
 		}
 		return Instance;
 	}
-
-	void SetScene(SCENEID _SceneState);
+private:
+	Scene* SceneState; 
+public:
+	void SetScene(SCENEID _SceneState);  
 	void Update();
 	void Render();
 	void Release();
+private:
+	SceneManager();
 
+public:
 	~SceneManager();
-};
 
+};

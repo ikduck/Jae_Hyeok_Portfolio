@@ -1,45 +1,40 @@
 #include "Player.h"
-#include "InputManager.h"
 #include "CursorManager.h"
-#include "Bullet.h"
+#include "MathManager.h"
 #include "ObjectManager.h"
-#include "ObjectFactory.h"
+#include "InputManager.h"
+#include "NormalBullet.h"
+#include "Object.h"
+#include "ObjectManager.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
-Player::~Player() { }
+Player::~Player() { Release(); }
 
-
-void Player::Initialize()
+Object* Player::Initialize(string _Key)
 {
-	strKey = "Player";
+	strKey = _Key;
 
-	/*
-		 Buffer[0][0] = (char*)"┼";
-		 Buffer[0][1] = (char*)"┼";
-		 Buffer[0][2] = (char*)"┼";
-		 Buffer[1][0] = (char*)"┣";
-		 Buffer[1][0] = (char*)"─";
-		 Buffer[1][0] = (char*)"┤";
-	*/ 
+	if (SelectPlayer == 0)
+	{
+		Buffer[0] = (char*)"┼┼┼";
+		Buffer[1] = (char*)"├─┤";
+	}
+	else if (SelectPlayer == 1)
+	{
+		Buffer[0] = (char*)"┼┼┼";
+		Buffer[1] = (char*)"├─┤";
+	}
 
-	 Buffer[0] = (char*)"┼┼┼";
-	 Buffer[1] = (char*)"┣─┤";
-
-	// Buffer[0] = (char*)" ┼ ";
-	// Buffer[1] = (char*)" ┴ ";
-	//─│─
-	//│─│
-
-	// ┼┼┼
-	// ┣─┤
-
-	TransInfo.Position = Vector3(30.0f, 45.0f);
+	TransInfo.Position = Vector3(40.0f, 50.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(3.0f, 3.0f);
-	TransInfo.Direction = Vector3(0.0f, 0.0f);;
+	TransInfo.Scale = Vector3(6.0f, 6.0f);
+	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
+	Speed = 1.0f;
 	Color = 15;
+
+	return this;
 }
 
 int Player::Update()
@@ -60,8 +55,9 @@ int Player::Update()
 
 	if (dwKey & KEY_SPACE)
 	{
-		ObjectManager::GetInstance()->AddObject(
-			ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
+		Bridge* pBridge = new NormalBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
+		ObjectManager::GetInstance()->GetObjectList("Bullet")->back()->SetPosition(TransInfo.Position);
 	}
 
 	return 0;
@@ -69,30 +65,24 @@ int Player::Update()
 
 void Player::Render()
 {
-	/*
-	 for (int i = 0; i < MAX_SIZE; ++i)
-	 {
-	 	for (int j = 0; j < MAX_SIZE; ++j)
-	 	{
-	 		CursorManager::GetInstance()->WriteBuffer(
-	 			TransInfo.Position.x,
-	 			TransInfo.Position.y + i,
-	 			Buffer[i][j], Color);
-	 	}
-	 }
-	*/
-
-	for (int i = 0; i < MAX_SIZE; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
 			TransInfo.Position.x,
 			TransInfo.Position.y + i,
 			Buffer[i], Color);
 	}
-
 }
 
 void Player::Release()
 {
-
+	::Safe_Delete(pBridge);
 }
+
+
+
+
+// 피타고라스 + 외적 내적
+// 
+// 이때까지는 Bullet에 속성없이 그냥 키 값으로만 넘겻는데
+// CreateBullet에서 속성을 주고 넘겨줌

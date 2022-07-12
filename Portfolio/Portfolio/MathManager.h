@@ -5,14 +5,13 @@
 class MathManager
 {
 public:
-	static float GetDistance(Vector3 _Current, Vector3 _Target)
+	static float GetDistance(Vector3 _Current,Vector3 _Target)
 	{
-		float Width = _Target.x - _Current.x;
-		float Height = _Target.y - _Current.y;
+		float Width = _Current.x - _Target.x;
+		float Height = _Current.y - _Target.y;
 
 		return sqrt((Width * Width) + (Height * Height));
 	}
-
 	static Vector3 GetDirection(Vector3 _Current, Vector3 _Target)
 	{
 		float Width = _Target.x - _Current.x;
@@ -20,6 +19,6 @@ public:
 
 		float Distance = sqrt((Width * Width) + (Height * Height));
 
-		return Vector3(Width / Distance, Height / Distance);
+			return Vector3(Width / Distance, Height / Distance);
 	}
 };

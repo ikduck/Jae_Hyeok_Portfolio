@@ -1,7 +1,8 @@
 #pragma once
 #include "Object.h"
 
-class Enemy : public Object
+
+class BackGround : public Object
 {
 public:
 	virtual Object* Initialize(string _Key)override;
@@ -9,9 +10,10 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual Object* Clone()override { return new Enemy(*this); }
+	virtual Object* Clone()override { return new BackGround(*this); }
 
-	Enemy();
-	Enemy(Transform _TransInfo);
-	virtual ~Enemy();
+	BackGround();
+	BackGround(Transform _TransInfo);
+	virtual ~BackGround();
 };
+

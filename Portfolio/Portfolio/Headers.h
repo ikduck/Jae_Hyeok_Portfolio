@@ -1,6 +1,5 @@
 #pragma once
-#define  _CRT_SECURE_NO_WARNINGS
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h> 
 #include <iostream>
 #include <vector>
@@ -10,8 +9,11 @@
 #include<math.h>
 
 #include "Define.h"
-#include "Enum.h"
 #include "Constent.h"
+#include "Enum.h"
 #include "Struct.h"
 
 using namespace std;
+
+
+

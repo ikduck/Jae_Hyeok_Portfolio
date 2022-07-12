@@ -13,6 +13,7 @@ public:
 	virtual int Update()PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
+
 public:
 	string GetKey() const { return strKey; }
 

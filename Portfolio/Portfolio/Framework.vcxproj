@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8dd9d9d3-dfe5-4e33-894d-add4384fcce4}</ProjectGuid>
-    <RootNamespace>Portfolio</RootNamespace>
+    <ProjectGuid>{cd79c6b6-eee3-47bd-aa31-650225833307}</ProjectGuid>
+    <RootNamespace>Framework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CursorManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy1.cpp" />
@@ -148,14 +150,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainUpdate.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Menu2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Player1.cpp" />
+    <ClCompile Include="PlayerChar1.cpp" />
     <ClCompile Include="Prototype.cpp" />
+    <ClCompile Include="RedBullet.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
@@ -163,10 +165,13 @@
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletBridge.h" />
+    <ClInclude Include="Cloud.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Constent.h" />
     <ClInclude Include="CursorManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enemy.h" />
@@ -177,23 +182,22 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainUpdate.h" />
-    <ClInclude Include="MathManager.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Menu2.h" />
+    <ClInclude Include="MathManager.h" />
     <ClInclude Include="NormalBullet.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Player1.h" />
     <ClInclude Include="PlayerBridge.h" />
+    <ClInclude Include="PlayerChar1.h" />
     <ClInclude Include="Prototype.h" />
+    <ClInclude Include="RedBullet.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Stage.h" />
-    <ClInclude Include="Constent.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>

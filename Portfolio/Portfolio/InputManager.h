@@ -5,24 +5,23 @@ class InputManager
 {
 private:
 	static InputManager* Instance;
+	InputManager();
+	DWORD Key;
 public:
 	static InputManager* GetInstance()
 	{
 		if (Instance == nullptr)
+		{
 			Instance = new InputManager;
-
+		}
 		return Instance;
 	}
-private:
-	DWORD Key;
-public:
+
 	DWORD GetKey() const { return Key; }
 
-public:
-	void InputKey();
-private:
-	InputManager();
-public:
+	void Inputkey(); 
+
 	~InputManager();
+
 };
 

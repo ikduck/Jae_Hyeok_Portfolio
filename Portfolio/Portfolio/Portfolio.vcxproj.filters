@@ -73,8 +73,44 @@
     <Filter Include="소스 파일\03. UserInterface\ScrollBox">
       <UniqueIdentifier>{75ce5716-b957-419f-8359-853271ea3d98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Scene\Logo\intro">
-      <UniqueIdentifier>{4b5127bc-e7ad-4b87-83b8-c9b836545ff3}</UniqueIdentifier>
+    <Filter Include="소스 파일\98. Pattern\ObjectPool">
+      <UniqueIdentifier>{7bd2610e-4dbd-4562-8f9f-969220f2f7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. Pattern\Bridge">
+      <UniqueIdentifier>{7cd39ee4-030d-42f1-ba27-07842c8ff9b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. Pattern\Prototype">
+      <UniqueIdentifier>{9e3fc968-8ec3-4f18-bd3a-6e250437716c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Manager\ObjectFactory">
+      <UniqueIdentifier>{2db48462-b241-4b91-ab12-a2144f7a0e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet\BulletBridge">
+      <UniqueIdentifier>{67f27391-f550-40e1-bf67-7e6e00c8b410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet\BulletBridge\NormalBullet">
+      <UniqueIdentifier>{2dfc9f31-bf9c-4ba8-9d59-6e5819b235ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge">
+      <UniqueIdentifier>{da364a5d-8888-4b5b-8256-6ba20997bb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Enemy\EnemyBridge\Enemy1">
+      <UniqueIdentifier>{8e3e8084-fd58-49b1-8b27-6f6e4fe47163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Player\PlayerBridge">
+      <UniqueIdentifier>{315d17ef-919c-445c-bd47-833ae67295bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Player\PlayerBridge\Player1">
+      <UniqueIdentifier>{403ad667-781b-4bfe-9627-f97544c99e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01. Scene\Menu2">
+      <UniqueIdentifier>{d4e386ac-6c6b-46d0-922a-46cb3de07ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\BackGround">
+      <UniqueIdentifier>{1de6a785-443d-4ad5-b552-429619361deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Player\PlayerBridge\Player2">
+      <UniqueIdentifier>{b6f30ce2-4c66-4947-afcd-4a968c405a52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +153,6 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>소스 파일\99. Manager\ObjectManager</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectPool.cpp">
-      <Filter>소스 파일\98. Pattern</Filter>
-    </ClCompile>
     <ClCompile Include="CursorManager.cpp">
       <Filter>소스 파일\99. Manager\CursorManager</Filter>
     </ClCompile>
@@ -128,6 +161,24 @@
     </ClCompile>
     <ClCompile Include="ScrollBox.cpp">
       <Filter>소스 파일\03. UserInterface\ScrollBox</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPool.cpp">
+      <Filter>소스 파일\98. Pattern\ObjectPool</Filter>
+    </ClCompile>
+    <ClCompile Include="Prototype.cpp">
+      <Filter>소스 파일\98. Pattern\Prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalBullet.cpp">
+      <Filter>소스 파일\02. Object\Bullet\BulletBridge\NormalBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy1.cpp">
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge\Enemy1</Filter>
+    </ClCompile>
+    <ClCompile Include="Player1.cpp">
+      <Filter>소스 파일\02. Object\Player\PlayerBridge\Player1</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu2.cpp">
+      <Filter>소스 파일\01. Scene\Menu2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +230,6 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>소스 파일\99. Manager\ObjectManager</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectPool.h">
-      <Filter>소스 파일\98. Pattern</Filter>
-    </ClInclude>
     <ClInclude Include="CursorManager.h">
       <Filter>소스 파일\99. Manager\CursorManager</Filter>
     </ClInclude>
@@ -199,6 +247,39 @@
     </ClInclude>
     <ClInclude Include="ScrollBox.h">
       <Filter>소스 파일\03. UserInterface\ScrollBox</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>소스 파일\98. Pattern\ObjectPool</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>소스 파일\98. Pattern\Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Prototype.h">
+      <Filter>소스 파일\98. Pattern\Prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>소스 파일\99. Manager\ObjectFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBridge.h">
+      <Filter>소스 파일\02. Object\Bullet\BulletBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalBullet.h">
+      <Filter>소스 파일\02. Object\Bullet\BulletBridge\NormalBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBridge.h">
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy1.h">
+      <Filter>소스 파일\02. Object\Enemy\EnemyBridge\Enemy1</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBridge.h">
+      <Filter>소스 파일\02. Object\Player\PlayerBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Player1.h">
+      <Filter>소스 파일\02. Object\Player\PlayerBridge\Player1</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu2.h">
+      <Filter>소스 파일\01. Scene\Menu2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

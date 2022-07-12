@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 
-class Enemy : public Object
+class Cloud : public Object
 {
 public:
 	virtual Object* Initialize(string _Key)override;
@@ -9,9 +9,10 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual Object* Clone()override { return new Enemy(*this); }
+	virtual Object* Clone()override { return new Cloud(*this); }
 
-	Enemy();
-	Enemy(Transform _TransInfo);
-	virtual ~Enemy();
+	Cloud();
+	Cloud(Transform _TransInfo);
+	virtual ~Cloud();
 };
+
