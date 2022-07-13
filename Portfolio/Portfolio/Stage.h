@@ -10,6 +10,8 @@ private:
 	Object* eEnemy;
 	UserInterface* pUI;
 	int Check;
+	int PB_Dam;
+	int E_Hp;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

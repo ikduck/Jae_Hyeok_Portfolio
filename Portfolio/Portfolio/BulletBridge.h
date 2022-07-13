@@ -8,13 +8,18 @@ protected:
 	// 총알 데미지
 	float Speed;
 	int Color;
+	char* Buffer[MAX_SIZE];
+	int PB_Damage;
+	int PB_BulletNum;
 public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 	
-	BulletBridge() : Speed(0), Color(0) {};
+	int GetE_Hp() const { return  PB_Damage; }
+
+	BulletBridge() : Speed(0), Color(0), PB_Damage(0) , PB_BulletNum(0) {};
 	virtual ~BulletBridge() {};
 };
 

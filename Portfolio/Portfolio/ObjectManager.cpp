@@ -16,7 +16,7 @@ ObjectManager::~ObjectManager() { }
 
 void ObjectManager::AddObject(string _Key)
 {
-	// pObject에 DisableList에 저장된 주소값을 가져와서 넣음
+
 	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
 
 	// pObject에 아무것도 없으면 clone을 만들어줌

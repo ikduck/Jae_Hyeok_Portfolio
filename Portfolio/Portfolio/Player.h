@@ -1,22 +1,24 @@
 #pragma once
 #include "Object.h"
 
+
 class Player : public Object
 {
 private:
 	int Color;
 	int Speed;
-	char SelectPlayer;
+	int PlayerLife;
+	int PlayerType;
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 
-	char GetPlayer() const { return SelectPlayer;  }
-	void SetScale(char _SelectPlayer) { SelectPlayer = _SelectPlayer; }
-
 	virtual Object* Clone()override { return new Player(*this); }
+
+	int GetPlayerType() const { return PlayerType; }
+	void SetPlayerType(int _PlayerType) { PlayerType = _PlayerType; }
 
 	Player();
 	Player(Transform _TransInfo);

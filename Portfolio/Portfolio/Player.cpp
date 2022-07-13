@@ -3,27 +3,30 @@
 #include "MathManager.h"
 #include "ObjectManager.h"
 #include "InputManager.h"
-#include "NormalBullet.h"
+#include "PlayerBullet.h"
 #include "Object.h"
 #include "ObjectManager.h"
+#include "Menu.h"
+#include "Menu2.h"
 
 Player::Player() { }
-Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
+Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), PlayerLife(0) { }
 Player::~Player() { Release(); }
 
 Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	if (SelectPlayer == 0)
+	if (PlayerType == 0)
 	{
 		Buffer[0] = (char*)"¦«¦«¦«";
 		Buffer[1] = (char*)"¦§¦¡¦©";
 	}
-	else if (SelectPlayer == 1)
+
+	if (PlayerType == 1)
 	{
-		Buffer[0] = (char*)"¦«¦«¦«";
-		Buffer[1] = (char*)"¦§¦¡¦©";
+		Buffer[0] = (char*)"¦¡¦«¦¡";
+		Buffer[1] = (char*)"  ¦ª  ";
 	}
 
 	TransInfo.Position = Vector3(40.0f, 50.0f);
@@ -33,6 +36,7 @@ Object* Player::Initialize(string _Key)
 
 	Speed = 1.0f;
 	Color = 15;
+	PlayerLife = 2;
 
 	return this;
 }
@@ -42,20 +46,38 @@ int Player::Update()
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_UP)
-		TransInfo.Position.y -= 1;
+	{
+		if (TransInfo.Position.y > 2.0f)
+		{
+			TransInfo.Position.y -= 1;
+		}
+	}
 
 	if (dwKey & KEY_DOWN)
-		TransInfo.Position.y += 1;
+	{
+		if (TransInfo.Position.y < 58.0f)
+		{
+			TransInfo.Position.y += 1;
+		}
+	}
 
 	if (dwKey & KEY_LEFT)
-		TransInfo.Position.x -= 1;
+	{
+		if (TransInfo.Position.x > 0.0f)
+		{
+			TransInfo.Position.x -= 1;
+		}
+	}
 
 	if (dwKey & KEY_RIGHT)
-		TransInfo.Position.x += 1;
+		if (TransInfo.Position.x < 74.0f)
+		{
+			TransInfo.Position.x += 1;
+		}
 
 	if (dwKey & KEY_SPACE)
 	{
-		Bridge* pBridge = new NormalBullet;
+		Bridge* pBridge = new PlayerBullet;
 		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
 		ObjectManager::GetInstance()->GetObjectList("Bullet")->back()->SetPosition(TransInfo.Position);
 	}
@@ -72,6 +94,10 @@ void Player::Render()
 			TransInfo.Position.y + i,
 			Buffer[i], Color);
 	}
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 0.0f,
+		PlayerType, Color);
+
 }
 
 void Player::Release()

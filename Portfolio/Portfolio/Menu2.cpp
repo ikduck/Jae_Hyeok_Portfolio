@@ -2,8 +2,9 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include"CursorManager.h"
+#include "Player.h"
 
-Menu2::Menu2() : Color(0) { }
+Menu2::Menu2() : Color(0)  { }
 
 Menu2::~Menu2() { }
 
@@ -14,6 +15,7 @@ void Menu2::Initialize()
 
 void Menu2::Update()
 {
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_LEFT)
@@ -23,6 +25,7 @@ void Menu2::Update()
 
 	if (dwKey & KEY_RIGHT)
 	{
+
 		SceneManager::GetInstance()->SetScene(MENU2);
 	}
 
@@ -149,6 +152,11 @@ void Menu2::Render()
 		61.5f, 53.0f, (char*)"弛   soon   弛", Color);
 	CursorManager::GetInstance()->WriteBuffer(
 		61.5f, 54.0f, (char*)"戌式式式式式戎 ", Color);
+
+	Player pPlayer;
+
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 0.0f, pPlayer.GetPlayerType(), Color);
 }
 
 void Menu2::Release()

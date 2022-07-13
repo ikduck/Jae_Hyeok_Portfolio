@@ -1,5 +1,4 @@
 #include "Enemy1.h"
-#include "NormalBullet.h"
 #include "CursorManager.h"
 #include "MathManager.h"
 #include "Object.h"
@@ -15,13 +14,14 @@ void Enemy1::Initialize()
 	// list로 , Player는 따로 빼서  , Monster도 따로 만들어주기
 
 	Speed = 1.0f;
-	Color = 15;
+	Color = 12;
+	E_Hp = 1;
 }
 
 int Enemy1::Update(Transform& TransInfo)
 {
 	TransInfo.Direction = MathManager::GetDirection(
-		TransInfo.Position, Vector3(80.0f, 60.0f));
+		TransInfo.Position, Vector3(80.0f, 70.0f));
 
 	TransInfo.Position.y += TransInfo.Direction.y * Speed;
 
