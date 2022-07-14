@@ -1,13 +1,11 @@
 #pragma once
 #include "Scene.h"
 
-class Object;
 class Menu : public Scene
 {
 private:
 	int Color;
 	int Count;
-	Player pPlayer;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

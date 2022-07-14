@@ -23,7 +23,7 @@ int Enemy1::Update(Transform& TransInfo)
 	TransInfo.Direction = MathManager::GetDirection(
 		TransInfo.Position, Vector3(80.0f, 70.0f));
 
-	TransInfo.Position.y += TransInfo.Direction.y * Speed;
+	// TransInfo.Position.y += TransInfo.Direction.y * Speed;
 
 
 	if (TransInfo.Position.x <= 0)

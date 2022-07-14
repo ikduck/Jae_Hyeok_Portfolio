@@ -14,6 +14,8 @@
 #include "Player1.h"
 #include "Enemy1.h"
 #include "BulletBridge.h"
+#include "DataBase.h"
+
 Stage::Stage() : Check() { }
 Stage::~Stage() { Release(); }
 
@@ -31,18 +33,15 @@ void Stage::Initialize()
 		// 몬스터 안겹치게 하는법
 		srand(DWORD(GetTickCount64() * (i + 1)));
 
-		// ObjectManager::GetInstance()->AddObject("Enemy");
 		Bridge* pBridge = new Enemy1;
 		ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
 		eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
 
-		eEnemy->SetPosition((float)(rand() % 78), (float)(rand() % 10)); //
+		eEnemy->SetPosition((float)(rand() % 78), (float)(rand() % 10));
 	}
 
 	pUI = new ScrollBox;
 	pUI->Initialize();
-
-
 }
 
 void Stage::Update()
@@ -122,7 +121,7 @@ void Stage::Update()
 						{
 							// DisableList로 이동
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다");
+							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 							
 							// 플레이어 총알과 적 이 충돌했을때 E_Hp -= B_Damege
 						}

@@ -8,6 +8,7 @@
 #include "ObjectManager.h"
 #include "Menu.h"
 #include "Menu2.h"
+#include "DataBase.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), PlayerLife(0) { }
@@ -17,13 +18,15 @@ Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	if (PlayerType == 0)
+	// DataBase DB;
+
+	if (0)
 	{
 		Buffer[0] = (char*)"¦«¦«¦«";
 		Buffer[1] = (char*)"¦§¦¡¦©";
 	}
 
-	if (PlayerType == 1)
+	if (1)
 	{
 		Buffer[0] = (char*)"¦¡¦«¦¡";
 		Buffer[1] = (char*)"  ¦ª  ";
@@ -43,6 +46,8 @@ Object* Player::Initialize(string _Key)
 
 int Player::Update()
 {
+
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_UP)
@@ -87,6 +92,7 @@ int Player::Update()
 
 void Player::Render()
 {
+
 	for (int i = 0; i < 2; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
@@ -94,10 +100,6 @@ void Player::Render()
 			TransInfo.Position.y + i,
 			Buffer[i], Color);
 	}
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 0.0f,
-		PlayerType, Color);
-
 }
 
 void Player::Release()

@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
+#include "DataBase.h"
 
 Menu::Menu() : Color(0) , Count(0) { }
 Menu::~Menu() { }
@@ -14,18 +15,13 @@ void Menu::Initialize()
 
 void Menu::Update()
 {
-	//Object* pPlayer = new Player;
+	DataBase DB;
+
+	DB.SetPlayerType(0);
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 0.0f, DB.GetPlayerType(), Color);
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey(); 
-
-	if (dwKey & KEY_UP)
-	{
-		pPlayer.SetPlayerType(1);
-	}
-	if (dwKey & KEY_DOWN)
-	{
-		pPlayer.SetPlayerType(0);
-	}
 
 	if (dwKey & KEY_RIGHT)
 	{
@@ -34,7 +30,7 @@ void Menu::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
-		pPlayer.SetPlayerType(1);
+		DB.SetPlayerType(0);
 		SceneManager::GetInstance()->SetScene(STAGE); 
 	}
 }
@@ -160,10 +156,6 @@ void Menu::Render()
 		61.5f, 54.0f, (char*)"戌式式式式式戎 ", Color);
 	// 80 3偃 3 
 
-	Player pPlayer;
-
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 0.0f, pPlayer.GetPlayerType(), Color);
 }
 
 void Menu::MoveCount()
