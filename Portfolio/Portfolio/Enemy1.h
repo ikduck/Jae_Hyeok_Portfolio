@@ -9,6 +9,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+	void DieEnemy();
+
 	Enemy1();
 	virtual ~Enemy1();
 };

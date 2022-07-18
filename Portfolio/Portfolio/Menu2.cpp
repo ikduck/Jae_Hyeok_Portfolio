@@ -3,9 +3,8 @@
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
-#include"DataBase.h"
-Menu2::Menu2() : Color(0)  { }
 
+Menu2::Menu2() : Color(0)  { }
 Menu2::~Menu2() { }
 
 void Menu2::Initialize()
@@ -15,11 +14,6 @@ void Menu2::Initialize()
 
 void Menu2::Update()
 {
-	DataBase DB;
-
-	DB.SetPlayerType(1);
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 0.0f, DB.GetPlayerType(), Color);
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -36,7 +30,6 @@ void Menu2::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
-		DB.SetPlayerType(1);
 		SceneManager::GetInstance()->SetScene(STAGE);
 	}
 }
@@ -165,3 +158,4 @@ void Menu2::Release()
 {
 }
 
+// 뭘해야되지?

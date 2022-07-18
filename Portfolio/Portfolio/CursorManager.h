@@ -35,10 +35,10 @@ private:
 	HANDLE hBuffer[2];		// ** 두개의 버퍼 
 public:
 	void CreateBuffer(const int& _Width, const int& _Height);				// ** 버퍼를 생성 (폭 , 높이)
-	void WriteBuffer(float _x, float _y, char* _str, int _Color = 15);			// ** 그리기 버퍼 (좌표, 출력할 화면 , 컬러값)
-	void WriteBuffer(float _x, float _y, int _Value, int  _Color = 15);
-	void WriteBuffer(Vector3 _Position, char* _str, int  _Color = 15);		// ** Vector3로 좌표 받아옴
-	void WriteBuffer(Vector3 _Position, int _Value, int  _Color = 15);		// ** 
+	void WriteBuffer(float _x, float _y, char* _str, int _Color);			// ** 그리기 버퍼 (좌표, 출력할 화면 , 컬러값)
+	void WriteBuffer(float _x, float _y, int _Value, int  _Color);
+	void WriteBuffer(Vector3 _Position, char* _str, int  _Color);		// ** Vector3로 좌표 받아옴
+	void WriteBuffer(Vector3 _Position, int _Value, int  _Color);		// ** 
 	void FlippingBuffer();			// ** 버퍼 전환
 	void ClearBuffer();				// ** 그려진 내용 삭제 
 	void DestroyBuffer();				// ** 버퍼 해제

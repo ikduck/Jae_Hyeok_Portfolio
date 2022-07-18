@@ -167,7 +167,6 @@
     <ClInclude Include="BulletBridge.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CursorManager.h" />
-    <ClInclude Include="DataBase.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy1.h" />

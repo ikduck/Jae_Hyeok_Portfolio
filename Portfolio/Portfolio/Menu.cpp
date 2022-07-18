@@ -3,7 +3,7 @@
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
-#include "DataBase.h"
+
 
 Menu::Menu() : Color(0) , Count(0) { }
 Menu::~Menu() { }
@@ -11,15 +11,11 @@ Menu::~Menu() { }
 void Menu::Initialize()
 {
 	Color = 15;
+	Pt1 = 0;
 }
 
 void Menu::Update()
 {
-	DataBase DB;
-
-	DB.SetPlayerType(0);
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 0.0f, DB.GetPlayerType(), Color);
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey(); 
 
@@ -30,7 +26,7 @@ void Menu::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
-		DB.SetPlayerType(0);
+		Pt1 = 1;
 		SceneManager::GetInstance()->SetScene(STAGE); 
 	}
 }

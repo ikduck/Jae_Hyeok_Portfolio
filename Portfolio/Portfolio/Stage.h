@@ -12,6 +12,8 @@ private:
 	int Check;
 	int PB_Dam;
 	int E_Hp;
+
+	// stage±¸Çö
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

@@ -12,8 +12,7 @@ void PlayerBullet::Initialize()
 	// µ¥¹ÌÁö.
 	// type
 
-	Buffer[0] = (char*)"¡û";
-	Buffer[1] = (char*)"¡Ñ";
+	Buffer = (char*)"¡û";
 
 	Speed = 3.0f;
 	Color = 15;
@@ -34,13 +33,10 @@ int PlayerBullet::Update(Transform& TransInfo)
 
 void PlayerBullet::Render()
 {
-	for (int i = 0; i < 2; ++i)
-	{
 		CursorManager::GetInstance()->WriteBuffer(
 			pObject->GetPosition().x + 2,
-			pObject->GetPosition().y + i,
-			Buffer[i], Color);
-	}
+			pObject->GetPosition().y,
+			Buffer, Color);
 }
 
 void PlayerBullet::Release()

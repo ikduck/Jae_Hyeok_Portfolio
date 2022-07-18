@@ -1,4 +1,4 @@
-// *** Portfolio
+// *** Portfolio Change Player Type
 #define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"

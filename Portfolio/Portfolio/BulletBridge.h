@@ -8,7 +8,7 @@ protected:
 	// 총알 데미지
 	float Speed;
 	int Color;
-	char* Buffer[MAX_SIZE];
+	char* Buffer;
 	int PB_Damage;
 	int PB_BulletNum;
 public:

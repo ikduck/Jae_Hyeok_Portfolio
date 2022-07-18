@@ -8,7 +8,6 @@
 #include "ObjectManager.h"
 #include "Menu.h"
 #include "Menu2.h"
-#include "DataBase.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), PlayerLife(0) { }
@@ -18,9 +17,7 @@ Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	// DataBase DB;
-
-	if (0)
+	if ( 0)
 	{
 		Buffer[0] = (char*)"┼┼┼";
 		Buffer[1] = (char*)"├─┤";
@@ -38,7 +35,7 @@ Object* Player::Initialize(string _Key)
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 	Speed = 1.0f;
-	Color = 15;
+	Color = 10;  // 9 파랑
 	PlayerLife = 2;
 
 	return this;
@@ -114,3 +111,5 @@ void Player::Release()
 // 
 // 이때까지는 Bullet에 속성없이 그냥 키 값으로만 넘겻는데
 // CreateBullet에서 속성을 주고 넘겨줌
+
+// ????

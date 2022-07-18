@@ -106,12 +106,6 @@
     <Filter Include="소스 파일\02. Object\Bullet2">
       <UniqueIdentifier>{fbc64194-e2c0-426e-89c3-68fce5997349}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Item">
-      <UniqueIdentifier>{b021082b-cfa1-4c29-b583-99c63d510a28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\99. Manager\DataBase">
-      <UniqueIdentifier>{f5fd6963-a8a0-4709-bed9-c25ae2f8983c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -271,9 +265,6 @@
     </ClInclude>
     <ClInclude Include="Menu2.h">
       <Filter>소스 파일\01. Scene\Menu2</Filter>
-    </ClInclude>
-    <ClInclude Include="DataBase.h">
-      <Filter>소스 파일\99. Manager\DataBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

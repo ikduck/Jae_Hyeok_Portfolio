@@ -23,9 +23,6 @@ int Enemy1::Update(Transform& TransInfo)
 	TransInfo.Direction = MathManager::GetDirection(
 		TransInfo.Position, Vector3(80.0f, 70.0f));
 
-	// TransInfo.Position.y += TransInfo.Direction.y * Speed;
-
-
 	if (TransInfo.Position.x <= 0)
 		return BUFFER_OVER;
 
@@ -34,6 +31,7 @@ int Enemy1::Update(Transform& TransInfo)
 
 void Enemy1::Render()
 {
+	// if E_HP <= 0;  터지는 모션 아니면 평소모션
 	for (int i = 0; i < 2; ++i)
 	{
 		CursorManager::GetInstance()->WriteBuffer(

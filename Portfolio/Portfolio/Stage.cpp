@@ -14,7 +14,6 @@
 #include "Player1.h"
 #include "Enemy1.h"
 #include "BulletBridge.h"
-#include "DataBase.h"
 
 Stage::Stage() : Check() { }
 Stage::~Stage() { Release(); }
@@ -56,14 +55,14 @@ void Stage::Update()
 		Enable_UI();
 	}
 
-	// if (dwKey & KEY_ESCAPE)
-	// {
-	// 	if (pBulletList->size())
-	// 	{
-	// 		ObjectPool::GetInstance()->CatchObject(pBulletList->back());
-	// 		pBulletList->pop_back();
-	// 	}
-	// }
+	if (dwKey & KEY_ESCAPE)
+	{
+		// if (pBulletList->size())
+		// {
+		// 	ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+		// 	pBulletList->pop_back();
+		// }
+	}
 
 	// pPlayer->Update();
 	ObjectManager::GetInstance()->Update();
@@ -105,13 +104,20 @@ void Stage::Update()
 	{
 		if (pEnemyList != nullptr)
 		{
+			// (*iter).second.erase(iter2);
+		
 			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
-				Enemyiter != pEnemyList->end(); ++Enemyiter)
+				Enemyiter != pEnemyList->end();)
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
 				{
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+					// 터지는 이펙트와 Player데미지 닳게
 				}
+				else
+					++Enemyiter;
+
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator Bulletiter = pBulletList->begin();
@@ -119,11 +125,10 @@ void Stage::Update()
 					{
 						if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
 						{
-							// DisableList로 이동
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
 							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-							
-							// 플레이어 총알과 적 이 충돌했을때 E_Hp -= B_Damege
+							// pEnemyList->erase(Enemyiter);
+
 						}
 						else
 							++Bulletiter;

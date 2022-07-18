@@ -29,6 +29,7 @@ void CursorManager::CreateBuffer(const int& _Width, const int& _Height)
 	}
 }
 
+
 void CursorManager::WriteBuffer(float _x, float _y, char* _str, int _Color)
 {
 	DWORD dw;		// 의미없음 - 임시로 생성됨 사용하게 된다면 => 크기값 전달

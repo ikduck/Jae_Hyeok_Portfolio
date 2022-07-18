@@ -58,6 +58,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 	}
 	else
 		iter->second.push_back(pObject);
+
 }
 
 list<Object*>* ObjectManager::GetObjectList(string _strKey)
@@ -87,6 +88,7 @@ list<Object*>::iterator ObjectManager::ThrowObject(list<Object*>::iterator _Wher
 
 	// CatchObject를 실행 ObjectPool에 전달
 	ObjectPool::GetInstance()->CatchObject(_Object);
+
 	// EnableList에서 삭제
 	return iter->second.erase(_Where);
 }

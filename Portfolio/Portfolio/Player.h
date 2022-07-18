@@ -7,6 +7,7 @@ private:
 	int Color;
 	int Speed;
 	int PlayerLife;
+
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
