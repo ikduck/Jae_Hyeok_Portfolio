@@ -9,7 +9,7 @@ protected:
 	float Speed;
 	int Color;
 	char* Buffer[MAX_SIZE];
-	int E_Hp;
+
 
 public:
 	virtual void Initialize()PURE;
@@ -17,9 +17,9 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
-	int GetE_Hp() const { return  E_Hp; }
+	int E_Hp;
 
-	EnemyBridge() : Speed(0), Color(0), E_Hp(0) {};
+	EnemyBridge() : Speed(0), Color(0) {};
 	virtual ~EnemyBridge() {};
 };
 

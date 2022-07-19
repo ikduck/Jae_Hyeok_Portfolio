@@ -9,7 +9,10 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	void DieEnemy();
+
+	// void DieEnemy();
+
+	// int GetE_Hp() const { return  E_Hp; }
 
 	Enemy1();
 	virtual ~Enemy1();

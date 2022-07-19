@@ -10,46 +10,47 @@
 #include "Menu2.h"
 
 Player::Player() { }
-Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), PlayerLife(0) { }
+Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), P_HP(0) { }
 Player::~Player() { Release(); }
 
 Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	if ( 0)
+	if (P_Info.GetPlayerType() ==  0)
 	{
 		Buffer[0] = (char*)"¦«¦«¦«";
 		Buffer[1] = (char*)"¦§¦¡¦©";
 	}
 
-	if (1)
+	if (P_Info.GetPlayerType() == 1)
 	{
 		Buffer[0] = (char*)"¦¡¦«¦¡";
 		Buffer[1] = (char*)"  ¦ª  ";
 	}
 
+
+
+
 	TransInfo.Position = Vector3(40.0f, 50.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(6.0f, 6.0f);
+	TransInfo.Scale = Vector3(3.0f, 2.0f);
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 	Speed = 1.0f;
 	Color = 10;  // 9 ÆÄ¶û
-	PlayerLife = 2;
+	P_HP = 2;
 
 	return this;
 }
 
 int Player::Update()
 {
-
-
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_UP)
 	{
-		if (TransInfo.Position.y > 2.0f)
+		if (TransInfo.Position.y > 0.0f)
 		{
 			TransInfo.Position.y -= 1;
 		}

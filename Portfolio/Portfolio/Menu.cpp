@@ -4,7 +4,6 @@
 #include"CursorManager.h"
 #include "Player.h"
 
-
 Menu::Menu() : Color(0) , Count(0) { }
 Menu::~Menu() { }
 
@@ -26,7 +25,7 @@ void Menu::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
-		Pt1 = 1;
+		P_Info.SetPlayerType(0);
 		SceneManager::GetInstance()->SetScene(STAGE); 
 	}
 }

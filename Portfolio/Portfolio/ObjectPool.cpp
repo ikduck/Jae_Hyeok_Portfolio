@@ -65,11 +65,11 @@ Object* ObjectPool::ThrowObject(string _Key)
 void ObjectPool::Update()
 {
 	// 화면에 출력
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"DisableList : ", 15);
-	CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, DisableList["Bullet"].size(), 15);
-	
-	CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"EnableList : ", 15);
-	CursorManager::GetInstance()->WriteBuffer(15.0f, 1.0f, EnableList["Bullet"].size(), 15);
+	// CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"DisableList : ", 15);
+	// CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, DisableList["Bullet"].size(), 15);
+	// 
+	// CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"EnableList : ", 15);
+	// CursorManager::GetInstance()->WriteBuffer(15.0f, 1.0f, EnableList["Bullet"].size(), 15);
 
 	// 키
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin();

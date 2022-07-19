@@ -30,6 +30,7 @@ void Menu2::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
+		P_Info.SetPlayerType(1); // À½....
 		SceneManager::GetInstance()->SetScene(STAGE);
 	}
 }

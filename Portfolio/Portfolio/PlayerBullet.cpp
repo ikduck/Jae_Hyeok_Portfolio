@@ -17,8 +17,6 @@ void PlayerBullet::Initialize()
 	Speed = 3.0f;
 	Color = 15;
 	PB_Damage = 1;
-	// ÃÑ¾Ë°¹¼ö
-	PB_BulletNum = 1;
 }
 
 int PlayerBullet::Update(Transform& TransInfo)

@@ -16,7 +16,7 @@ Object* Enemy::Initialize(string _Key)
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f); 
  	// TransInfo.Scale = Vector3((float)strlen(Buffer[0]),(float)MAX_SIZE);
-	TransInfo.Scale = Vector3(3.0f, 3.0f);
+	TransInfo.Scale = Vector3(3.0f, 2.0f);
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 
@@ -26,11 +26,12 @@ Object* Enemy::Initialize(string _Key)
 
 int Enemy::Update()
 {
-	// TransInfo.Position.x -= 2;
+
 	/*
 	 if (TransInfo.Position.x <= 0)
 	 	return BUFFER_OVER;
 	*/
+
 	if (pBridge)
 		pBridge->Update(TransInfo);
 

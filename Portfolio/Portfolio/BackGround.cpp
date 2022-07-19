@@ -1,7 +1,7 @@
 #include "BackGround.h"
 
 BackGround::BackGround() { }
-BackGround::BackGround(Transform _TransInfo) { } 
+BackGround::BackGround(Transform _TransInfo) { }
 BackGround::~BackGround() { }
 
 Object* BackGround::Initialize(string _Key)
@@ -22,4 +22,3 @@ void BackGround::Render()
 void BackGround::Release()
 {
 }
-
