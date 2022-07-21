@@ -22,6 +22,8 @@ void Prototype::initialize()
 	Key = "Bullet";
 	PrototypeList[Key] = (new Bullet(Info))->Initialize(Key);
 
+	Key = "Bullet2";
+	PrototypeList[Key] = (new Bullet(Info))->Initialize(Key);
 }
 
 Object* Prototype::PrototypeObject(string _Key)

@@ -9,8 +9,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-
-	// void DieEnemy();
+	virtual void SetD(Transform& Info)override;
+	virtual void Fire_EBullet()override;
 
 	// int GetE_Hp() const { return  E_Hp; }
 

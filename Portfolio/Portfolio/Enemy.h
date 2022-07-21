@@ -3,6 +3,9 @@
 
 class Enemy : public Object
 {
+private:
+	int Count = 0;
+
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
@@ -11,6 +14,8 @@ public:
 
 	virtual Object* Clone()override { return new Enemy(*this); }
 
+	void Fire_EBullet();
+	
 	Enemy();
 	Enemy(Transform _TransInfo);
 	virtual ~Enemy();

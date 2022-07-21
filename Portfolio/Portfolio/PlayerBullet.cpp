@@ -11,8 +11,7 @@ void PlayerBullet::Initialize()
 	// ** Bullet의 
 	// 데미지.
 	// type
-
-	Buffer = (char*)"∩";
+	Buffer = (char*)"◈";
 
 	Speed = 3.0f;
 	Color = 15;
@@ -22,7 +21,7 @@ void PlayerBullet::Initialize()
 int PlayerBullet::Update(Transform& TransInfo)
 {
 	TransInfo.Direction = MathManager::GetDirection(
-		TransInfo.Position, Vector3(80.0f, 60.0f));
+		TransInfo.Position, Vector3(40.0f, 60.0f));
 
 	TransInfo.Position.y -= TransInfo.Direction.y * Speed;
 
@@ -42,3 +41,4 @@ void PlayerBullet::Release()
 
 }
 
+// 딜레이 줘서 1프레임 끝나면 다시 출력되게

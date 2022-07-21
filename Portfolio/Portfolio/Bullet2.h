@@ -1,8 +1,7 @@
 #pragma once
 #include "Object.h"
 
-
-class BackGround : public Object
+class Bullet2 : public Object
 {
 public:
 	virtual Object* Initialize(string _Key)override;
@@ -10,11 +9,10 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual Object* Clone()override { return new BackGround(*this); }
+	virtual Object* Clone()override { return new Bullet2(*this); }
 
-	BackGround();
-	BackGround(Transform _TransInfo);
-	virtual ~BackGround();
+	Bullet2();
+	Bullet2(Transform _TransInfo);
+	virtual ~Bullet2();
 };
-
 

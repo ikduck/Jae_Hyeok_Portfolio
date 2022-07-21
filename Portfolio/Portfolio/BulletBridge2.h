@@ -1,17 +1,14 @@
 #pragma once
 #include "Bridge.h"
 
-class EnemyBridge : public Bridge
+class BulletBridge2 : public Bridge
 {
 protected:
 	//** Bullet의 데이터만 넣음
 	// 총알 데미지
 	float Speed;
 	int Color;
-	char* Buffer[MAX_SIZE];
-
-	// 총알 발사 변수
-	int Count;
+	char* Buffer;
 
 public:
 	virtual void Initialize()PURE;
@@ -19,13 +16,10 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
-	virtual void SetD(Transform& Info)PURE;
+	virtual void SetD(Transform& TransInfo)PURE;
 
-	virtual void Fire_EBullet()PURE;
+	int EB_Damage;
 
-	int E_Hp;
-
-	EnemyBridge() : Speed(0), Color(0) , Count(0) {};
-	virtual ~EnemyBridge() {};
+	BulletBridge2() : Speed(0), Color(0), Buffer(nullptr) {};
+	virtual ~BulletBridge2() {};
 };
-

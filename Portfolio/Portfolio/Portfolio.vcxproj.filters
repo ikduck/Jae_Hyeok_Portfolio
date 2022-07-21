@@ -97,17 +97,23 @@
     <Filter Include="소스 파일\01. Scene\Menu2">
       <UniqueIdentifier>{d4e386ac-6c6b-46d0-922a-46cb3de07ec1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\BackGround">
-      <UniqueIdentifier>{1de6a785-443d-4ad5-b552-429619361deb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02. Object\Bullet\BulletBridge\PlayerBullet">
       <UniqueIdentifier>{2dfc9f31-bf9c-4ba8-9d59-6e5819b235ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Bullet2">
-      <UniqueIdentifier>{fbc64194-e2c0-426e-89c3-68fce5997349}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\97. PlayerInfo">
       <UniqueIdentifier>{eabed45d-b172-4080-ac7a-4aca80208348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet2">
+      <UniqueIdentifier>{e0123712-18bc-4af8-ab56-615d2abbc44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet2\BulletBridge2">
+      <UniqueIdentifier>{0f528e27-317e-485f-9912-4ca8b14e613d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet2\BulletBridge2\EnemyBullet">
+      <UniqueIdentifier>{ac5b0c98-d006-4712-873f-1f55cf210a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Bullet2\BulletBridge2\E_HomingBullet">
+      <UniqueIdentifier>{4efe98a3-0af2-4d99-9f04-47ac4a66e05b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +180,14 @@
     <ClCompile Include="Menu2.cpp">
       <Filter>소스 파일\01. Scene\Menu2</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>소스 파일\02. Object\BackGround</Filter>
+    <ClCompile Include="Bullet2.cpp">
+      <Filter>소스 파일\02. Object\Bullet2</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>소스 파일\02. Object\Bullet2\BulletBridge2\EnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletBridge2.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,8 +287,14 @@
     <ClInclude Include="PlayerInfo.h">
       <Filter>소스 파일\97. PlayerInfo</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>소스 파일\02. Object\BackGround</Filter>
+    <ClInclude Include="Bullet2.h">
+      <Filter>소스 파일\02. Object\Bullet2</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBridge2.h">
+      <Filter>소스 파일\02. Object\Bullet2\BulletBridge2</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>소스 파일\02. Object\Bullet2\BulletBridge2\EnemyBullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

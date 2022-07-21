@@ -15,6 +15,5 @@ public:
 	Bullet();
 	Bullet(Transform _TransInfo);
 	virtual ~Bullet();
-
 };
 

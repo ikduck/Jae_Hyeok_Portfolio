@@ -14,7 +14,7 @@ private:
 	int E_Hp;
 
 	// Enemy 삭제 확인 bool
-	bool Del_;
+	bool Del_BM;
 
 	// stage구현
 	int Show_Stage = 0;

@@ -29,11 +29,11 @@ void Stage::Initialize()
 
 	//  UserInstance -> Player;
 
-	Bridge* pBridge = new Enemy1;
-	ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
-	eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
+	// Bridge* pBridge = new Enemy1;
+	// ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
+	// eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
 
-	eEnemy->SetPosition(40.0f,30.0f);
+	//eEnemy->SetPosition(40.0f,30.0f);
 
 	pUI = new ScrollBox;
 	pUI->Initialize();
@@ -42,6 +42,7 @@ void Stage::Initialize()
 void Stage::Update()
 {
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+	list<Object*>* pBulletList2 = ObjectManager::GetInstance()->GetObjectList("Bullet2");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 
 	MoveCount();
@@ -63,9 +64,9 @@ void Stage::Update()
 		// }
 	}
 
-	ObjectManager::GetInstance()->Update();
+	ObjectManager::GetInstance()->Update(); 
 
-	// PlayerBullet 맵밖으로 나가면 지우기 
+	// PlayerBullet 맵밖으로 나가면 지우기 1
 	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin();
@@ -76,54 +77,59 @@ void Stage::Update()
 			else
 				++iter;
 		}
-	}
-
-	// 적 맵 밖으로 나갔을때 지우기
-	if (pEnemyList != nullptr)
+	} 
+	// PlayerBullet 맵밖으로 나가면 지우기 2
+	if (pBulletList2 != nullptr)
 	{
-		for (list<Object*>::iterator iter = pEnemyList->begin();
-			iter != pEnemyList->end(); )
+		for (list<Object*>::iterator iter = pBulletList2->begin();
+			iter != pBulletList2->end(); )
 		{
-			if ((*iter)->GetPosition().y >= 60.0f)
-				iter = pEnemyList->erase(iter);
-			else if ((*iter)->GetPosition().y < -5.0f)
-				iter = pEnemyList->erase(iter);
-			else if ((*iter)->GetPosition().x < 0.0f)
-				iter = pEnemyList->erase(iter);
-			else if ((*iter)->GetPosition().x > 80.0f)
-				iter = pEnemyList->erase(iter);
+			if ((*iter)->GetPosition().y >= 58.0f)
+				iter = pBulletList2->erase(iter);
 			else
 				++iter;
 		}
 	}
 
-	BulletBridge* PB = new PlayerBullet;
-	EnemyBridge* E_Hp = new Enemy1;
-	Player Player;
-	// bool 값 하나줘서 부딛히고 나면  bool값에 따라서 삭제할지 정하기
-	// Bullet 와 Enemy가 같이 지워져야되는데 
+	// 적 맵 밖으로 나갔을때 지우기
+	if (pEnemyList != nullptr) 
+	{
+		for (list<Object*>::iterator iter = pEnemyList->begin(); 
+			iter != pEnemyList->end(); ) 
+		{
+			if ((*iter)->GetPosition().y >= 60.0f) 
+				iter = pEnemyList->erase(iter); 
+			else if ((*iter)->GetPosition().y < -5.0f) 
+				iter = pEnemyList->erase(iter); 
+			else if ((*iter)->GetPosition().x < 0.0f) 
+				iter = pEnemyList->erase(iter); 
+			else if ((*iter)->GetPosition().x > 80.0f) 
+				iter = pEnemyList->erase(iter); 
+			else 
+				++iter; 
+		} 
+	} 
+
+	BulletBridge* PB = new PlayerBullet; 
+	EnemyBridge* E_Hp = new Enemy1; 
+	Player Player; 
 
 	// 충돌
-	if (pPlayer != nullptr)
-	{
-		if (pEnemyList != nullptr)
-		{		
-			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
-				Enemyiter != pEnemyList->end(); )
-			{
-				Del_ = false;
-				if (CollisionManager::RectCollision(pPlayer, *Enemyiter))
-				{
-					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-					// 터지는 이펙트와 Player데미지 닳게	
-					
-					// --Player.P_HP;
-					// if (Player.P_HP <= 0)
-					// {
-					//		// 씬이동 GameOver;
-					// }
-				}
+	if (pPlayer != nullptr) 
+	{ 
+		if (pEnemyList != nullptr) 
+		{ 
+			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); 
+				Enemyiter != pEnemyList->end(); ) 
+			{ 
+				Del_BM = false; 
+				if (CollisionManager::RectCollision(pPlayer, *Enemyiter)) 
+				{ 
+					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15); 
+					 
+					--Player.P_HP; 
+					Del_BM = true; 
+				} 
 
 				if (pBulletList != nullptr)
 				{
@@ -132,7 +138,6 @@ void Stage::Update()
 					{
 						if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
 						{
-							// 총알지워주기
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
 							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 
@@ -141,21 +146,34 @@ void Stage::Update()
 							if (E_Hp->E_Hp <= 0)
 							{
 								CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"사망", 15);
-								// 몬스터 지워주기
-								Del_ = true;
+								
+								Del_BM = true;
 							}
 						}
 						else
 							++Bulletiter;
 					}
 				}
-				// bool값에 따라서 지워줄지 정하기?
-				if (Del_ == true)
+				if (Del_BM == true )
 				{
+					// 플레이어 총알 & 몬스터 
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 					InGame_Score += 1000;
+
+					// 터지는 이펙트와 Player데미지 닳게	
+					/*
+					if (Player.P_HP == 1)
+					{
+						// 터지는 모션 + 리스폰
+					}
+					if (Player.P_HP <= 0)
+					{
+						// 씬이동 GameOver;
+					}
+					*/
+
 				}
-				if (Del_ == false)
+				if (Del_BM == false)
 				{
 					++Enemyiter;
 				}
@@ -171,8 +189,8 @@ void Stage::Render()
 {
 	ObjectManager::GetInstance()->Render();
 
-	if (Check)
-		pUI->Render();
+	 if (Check)
+	 	pUI->Render();
 }
 
 void Stage::Release()
@@ -196,34 +214,32 @@ void Stage::MoveCount()
 
 void Stage::Bilde_Stage()
 {
-
-	// if (Show_Stage == 0)
-	// {
-	// 		if (Count == 15)
-	// 		{
-	// 			for (int i = 0; i < 2; ++i)
-	// 			{
-	// 				// 몬스터 안겹치게 하는법??
-	// 
-	// 				srand(DWORD(GetTickCount64() * (i + 3)));
-	// 
-	// 				Bridge* pBridge = new Enemy1;
-	// 				ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
-	// 				eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
-	// 
-	// 				eEnemy->SetPosition((float)(rand() % 76), (float)(rand() % -2));
-	// 
-	//				++E_Count;
-	// 
-	//				if(E_Count == 50)
-	// 				{
-	// 	   				// E_Count가 50이 되면 스테이지 넘어감
-	//					++Show_Stage;
-	//				}
-	// 			}
-	//		}  
-	// }
-
+	 if (Show_Stage == 0)
+	 {
+	 		if (Count == 15)
+	 		{
+	 			for (int i = 0; i < 2; ++i)
+	 			{
+	 				// 몬스터 안겹치게 하는법??
+	 				srand(DWORD(GetTickCount64() * (i + 3)));
+	 
+	 				Bridge* pBridge = new Enemy1;
+	 				ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
+	 				eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
+	 
+	 				eEnemy->SetPosition((float)(rand() % 76), (float)(rand() % -2));
+	 
+	 			++E_Count;
+	 
+	 			if(E_Count == 50)
+	 				{
+	 	   				// E_Count가 50이 되면 스테이지 넘어감
+	 				++Show_Stage;
+	 			}
+	 		}
+	 	}  
+	 }
+	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
 }
 
 void Stage::Score()
@@ -243,4 +259,4 @@ void Stage::Score()
 // 3. 적과 플레이어 총알의 충돌
 // 4. 적의 총알과 플레이어의 충돌
 // 충돌하면 안되는 것들
-// 
+// 일회성 / 환급형(추천안함)

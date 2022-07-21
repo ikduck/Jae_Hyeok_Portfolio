@@ -20,6 +20,9 @@ public:
 public:
 	string GetKey() const { return strKey; }
 
+	Vector3 GetDirection() const { return TransInfo.Direction; }
+	void SetDirection(Vector3 _Direction) { TransInfo.Direction = _Direction; }
+
 	Vector3 GetPosition() const { return TransInfo.Position; }
 	void SetPosition(float _x, float _y) { TransInfo.Position = Vector3(_x, _y); }
 	void SetPosition(Vector3 _Position) { TransInfo.Position = _Position; }

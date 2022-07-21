@@ -1,6 +1,8 @@
 #include "Enemy.h"
 #include "CursorManager.h"
 #include "Bridge.h"
+#include "EnemyBullet.h"
+#include "ObjectManager.h"
 
 Enemy::Enemy() { }
 Enemy::Enemy(Transform _TransInfo) : Object(_TransInfo) { }
@@ -32,6 +34,8 @@ int Enemy::Update()
 	 	return BUFFER_OVER;
 	*/
 
+	Fire_EBullet();
+
 	if (pBridge)
 		pBridge->Update(TransInfo);
 
@@ -49,4 +53,29 @@ void Enemy::Release()
 	::Safe_Delete(pBridge);
 }
 
+void Enemy::Fire_EBullet()
+{
+	if (Count <= 20)
+		++Count;
+
+	else
+		Count = 0;
+
+	if (Count == 10)
+	{
+
+		Bridge* pBridge = new EnemyBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet2", pBridge);
+		ObjectManager::GetInstance()->GetObjectList("Bullet2")->back()->SetPosition(TransInfo.Position);
+		// ObjectManager::GetInstance()->GetObjectList("Bullet2")->back();
+		((BulletBridge2*)pBridge)->SetD();
+	}
+}
+
+
 // 삭제방법은 여러가지가 있음 - stage에서 지울수도있고 
+/*
+		Bridge* pBridge = new PlayerBullet;
+		ObjectManager::GetInstance()->AddObject("Bullet", pBridge);
+		ObjectManager::GetInstance()->GetObjectList("Bullet")->back()->SetPosition(TransInfo.Position);
+*/
