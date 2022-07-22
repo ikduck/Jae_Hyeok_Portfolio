@@ -1,8 +1,8 @@
-#include "Menu2.h"
-#include "SceneManager.h"
-#include "InputManager.h"
-#include"CursorManager.h"
-#include "Player.h"
+#include "Menu2.h" 
+#include "SceneManager.h" 
+#include "InputManager.h" 
+#include"CursorManager.h" 
+#include "Player.h" 
 
 Menu2::Menu2() : Color(0)  { }
 Menu2::~Menu2() { }
@@ -14,7 +14,6 @@ void Menu2::Initialize()
 
 void Menu2::Update()
 {
-
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_LEFT)
@@ -30,7 +29,6 @@ void Menu2::Update()
 
 	if (dwKey & KEY_ENTER)
 	{
-		P_Info.SetPlayerType(1); // À½....
 		SceneManager::GetInstance()->SetScene(STAGE);
 	}
 }
@@ -155,7 +153,7 @@ void Menu2::Render()
 
 }
 
-void Menu2::Release()
+void Menu2::Release() 
 {
 }
 

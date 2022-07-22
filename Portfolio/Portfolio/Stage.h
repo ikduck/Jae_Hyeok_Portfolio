@@ -8,7 +8,9 @@ class Stage : public Scene
 private:
 	Object* pPlayer;
 	Object* eEnemy;
+	Object* bCloud;
 	UserInterface* pUI;
+
 	int Check;
 	int PB_Dam;
 	int E_Hp;
@@ -31,6 +33,7 @@ public:
 	void Enable_UI();
 	void MoveCount();
 	void Bilde_Stage();
+	void Bilde_BackGround();
 	// 점수 화면 출력할거임
 	void Score();
 

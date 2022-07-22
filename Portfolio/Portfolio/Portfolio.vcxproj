@@ -139,9 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Bullet2.cpp" />
-    <ClCompile Include="BulletBridge2.cpp" />
+    <ClCompile Include="Cloud1.cpp" />
     <ClCompile Include="CursorManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy1.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainUpdate.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Menu1.cpp" />
     <ClCompile Include="Menu2.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -165,11 +167,14 @@
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cloud.h" />
+    <ClInclude Include="CloudBridge.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Bullet2.h" />
     <ClInclude Include="BulletBridge.h" />
     <ClInclude Include="BulletBridge2.h" />
+    <ClInclude Include="Cloud1.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CursorManager.h" />
     <ClInclude Include="Define.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="MainUpdate.h" />
     <ClInclude Include="MathManager.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Menu1.h" />
     <ClInclude Include="Menu2.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Object.h" />

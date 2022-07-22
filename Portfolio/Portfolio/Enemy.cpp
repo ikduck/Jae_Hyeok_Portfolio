@@ -68,7 +68,7 @@ void Enemy::Fire_EBullet()
 		ObjectManager::GetInstance()->AddObject("Bullet2", pBridge);
 		ObjectManager::GetInstance()->GetObjectList("Bullet2")->back()->SetPosition(TransInfo.Position);
 		// ObjectManager::GetInstance()->GetObjectList("Bullet2")->back();
-		((BulletBridge2*)pBridge)->SetD();
+		((BulletBridge2*)pBridge)->SetD(TransInfo);
 	}
 }
 

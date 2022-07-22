@@ -14,7 +14,7 @@ void PlayerBullet::Initialize()
 	Buffer = (char*)"¢Â";
 
 	Speed = 3.0f;
-	Color = 15;
+	Color = 10;
 	PB_Damage = 1;
 }
 

@@ -15,6 +15,10 @@
 #include "Enemy1.h"
 #include "BulletBridge.h"
 #include "PlayerBullet.h"
+#include "Cloud.h"
+#include "Cloud1.h"
+#include"BulletBridge2.h"
+#include "EnemyBullet.h"
 
 Stage::Stage() : Check() { }
 Stage::~Stage() { Release(); }
@@ -35,6 +39,8 @@ void Stage::Initialize()
 
 	//eEnemy->SetPosition(40.0f,30.0f);
 
+
+
 	pUI = new ScrollBox;
 	pUI->Initialize();
 }
@@ -44,9 +50,12 @@ void Stage::Update()
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
 	list<Object*>* pBulletList2 = ObjectManager::GetInstance()->GetObjectList("Bullet2");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+	list<Object*>* pCloudList = ObjectManager::GetInstance()->GetObjectList("Cloud");
 
 	MoveCount();
 	Bilde_Stage();
+	Bilde_BackGround();
+	Score();
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -66,7 +75,7 @@ void Stage::Update()
 
 	ObjectManager::GetInstance()->Update(); 
 
-	// PlayerBullet 맵밖으로 나가면 지우기 1
+	// 맵밖으로 나가면 지우기
 	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin();
@@ -78,7 +87,6 @@ void Stage::Update()
 				++iter;
 		}
 	} 
-	// PlayerBullet 맵밖으로 나가면 지우기 2
 	if (pBulletList2 != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList2->begin();
@@ -90,8 +98,6 @@ void Stage::Update()
 				++iter;
 		}
 	}
-
-	// 적 맵 밖으로 나갔을때 지우기
 	if (pEnemyList != nullptr) 
 	{
 		for (list<Object*>::iterator iter = pEnemyList->begin(); 
@@ -109,8 +115,20 @@ void Stage::Update()
 				++iter; 
 		} 
 	} 
+	if (pCloudList != nullptr)
+	{
+		for (list<Object*>::iterator iter = pCloudList->begin();
+			iter != pCloudList->end(); )
+		{
+			if ((*iter)->GetPosition().y >= 60.0f)
+				iter = pCloudList->erase(iter);
+			else
+				++iter;
+		}
+	}
 
 	BulletBridge* PB = new PlayerBullet; 
+	BulletBridge2* EB = new EnemyBullet;
 	EnemyBridge* E_Hp = new Enemy1; 
 	Player Player; 
 
@@ -153,24 +171,50 @@ void Stage::Update()
 						else
 							++Bulletiter;
 					}
+					
+					// 플레이어와 적 총알 충돌
+					/*
+					if (pBulletList2 != nullptr)
+					{
+						for (list<Object*>::iterator Bulletiter = pBulletList2->begin();
+							Bulletiter != pBulletList2->end(); )
+						{
+							if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
+							{
+								Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
+								CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+
+								Player.P_HP -= EB->EB_Damage;
+
+								if (Player.P_HP <= 0)
+								{
+									CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"사망", 15);
+
+									Del_BM = true;
+								}
+							}
+							else
+								++Bulletiter;
+					}
+					*/
 				}
 				if (Del_BM == true )
 				{
-					// 플레이어 총알 & 몬스터 
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 					InGame_Score += 1000;
+					// 몬스터 아이템 떨구기
 
 					// 터지는 이펙트와 Player데미지 닳게	
-					/*
 					if (Player.P_HP == 1)
 					{
 						// 터지는 모션 + 리스폰
+						CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
+
 					}
 					if (Player.P_HP <= 0)
 					{
-						// 씬이동 GameOver;
+						//  GameOver;
 					}
-					*/
 
 				}
 				if (Del_BM == false)
@@ -235,20 +279,37 @@ void Stage::Bilde_Stage()
 	 				{
 	 	   				// E_Count가 50이 되면 스테이지 넘어감
 	 				++Show_Stage;
+	 				}
 	 			}
-	 		}
-	 	}  
+	 		}  
 	 }
 	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
+}
+
+void Stage::Bilde_BackGround()
+{
+	if (Count == 30)
+	{ 
+		// for (int i = 0; i < 2; ++i)
+		// {
+		// 	srand(DWORD(GetTickCount64() * (i + 3)));
+		// 
+		// 	Bridge* pBridge = new Cloud1;
+		// 	ObjectManager::GetInstance()->AddObject("Cloud", pBridge);
+		// 	bCloud = ObjectManager::GetInstance()->GetObjectList("Cloud")->back();
+		// 
+		// 	bCloud->SetPosition((float)(rand() % 43), (float)(rand() % -2));
+		// }
+	}
 }
 
 void Stage::Score()
 {
 	// 출력어케 할껀지 왼쪽상단
 	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 5.0f, (char*)"1P : ", 15);
+		0.0f, 1.0f, (char*)"1P : ", 15);
 	CursorManager::GetInstance()->WriteBuffer(
-		5.0f, 5.0f, InGame_Score, 15);
+		5.0f, 1.0f, InGame_Score, 15);
 }
 
 // 총맞았을때 몬스터 지워지게 하는법
@@ -256,7 +317,6 @@ void Stage::Score()
 // 충돌해야되는 것들
 // 1. 아이템과 플레이어의 충돌
 // 2. 적과 플레이어의 충돌
-// 3. 적과 플레이어 총알의 충돌
 // 4. 적의 총알과 플레이어의 충돌
-// 충돌하면 안되는 것들
-// 일회성 / 환급형(추천안함)
+
+

@@ -29,9 +29,6 @@ Object* Player::Initialize(string _Key)
 		Buffer[1] = (char*)"  ¦ª  ";
 	}
 
-
-
-
 	TransInfo.Position = Vector3(40.0f, 50.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(3.0f, 2.0f);
@@ -102,7 +99,6 @@ void Player::Render()
 
 void Player::Release()
 {
-	::Safe_Delete(pBridge);
 }
 
 

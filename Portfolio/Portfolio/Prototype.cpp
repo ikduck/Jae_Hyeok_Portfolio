@@ -2,7 +2,9 @@
 
 #include "Player.h"
 #include "Bullet.h"
+#include "Bullet2.h"
 #include "Enemy.h"
+#include "Cloud.h"
 
 Prototype* Prototype::Instance = nullptr;
 Prototype::Prototype() { }
@@ -23,7 +25,10 @@ void Prototype::initialize()
 	PrototypeList[Key] = (new Bullet(Info))->Initialize(Key);
 
 	Key = "Bullet2";
-	PrototypeList[Key] = (new Bullet(Info))->Initialize(Key);
+	PrototypeList[Key] = (new Bullet2(Info))->Initialize(Key);
+
+	Key = "Cloud";
+	PrototypeList[Key] = (new Cloud(Info))->Initialize(Key);
 }
 
 Object* Prototype::PrototypeObject(string _Key)

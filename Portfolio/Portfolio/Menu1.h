@@ -1,18 +1,20 @@
 #pragma once
 #include "Scene.h"
 #include "PlayerInfo.h"
-
-class Menu2 : public Scene
+class Menu1 : public Scene
 {
 private:
 	int Color;
+	int Count;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 
-	Menu2();
-	virtual  ~Menu2();
+	void MoveCount();
+
+	Menu1();
+	virtual  ~Menu1();
 };
 

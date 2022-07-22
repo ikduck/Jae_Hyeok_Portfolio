@@ -14,7 +14,7 @@ void EnemyBullet::Initialize()
 	Buffer = (char*)"£À"; 
 
 	Speed = 1.0f; 
-	Color = 15; 
+	Color = 12; 
 	EB_Damage = 1; 
 }
 

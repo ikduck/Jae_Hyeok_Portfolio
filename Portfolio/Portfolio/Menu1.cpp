@@ -1,33 +1,34 @@
-#include "Menu.h"
+#include "Menu1.h"
 #include "SceneManager.h"
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
 
-Menu::Menu() : Color(0) , Count(0) { }
-Menu::~Menu() { }
+Menu1::Menu1() : Color(0), Count(0) { } 
+Menu1::~Menu1() { } 
 
-void Menu::Initialize()
+void Menu1::Initialize() 
 {
 	Color = 15;
 }
 
-void Menu::Update()
+void Menu1::Update() 
 {
-	DWORD dwKey = InputManager::GetInstance()->GetKey(); 
+
+	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_RIGHT)
 	{
-		SceneManager::GetInstance()->SetScene(MENU2);
+		// SceneManager::GetInstance()->SetScene(Menu2);
 	}
 
-	if (dwKey & KEY_ENTER) 
+	if (dwKey & KEY_ENTER)
 	{
-		SceneManager::GetInstance()->SetScene(STAGE); 
+		SceneManager::GetInstance()->SetScene(STAGE);
 	}
 }
 
-void Menu::Render()
+void Menu1::Render()
 {
 	MoveCount();
 
@@ -132,7 +133,7 @@ void Menu::Render()
 		11.5f, 52.0f, (char*)"托扛托", Color);
 	CursorManager::GetInstance()->WriteBuffer(
 		11.5f, 53.0f, (char*)"戍式扣", Color);
-		
+
 	CursorManager::GetInstance()->WriteBuffer(
 		36.5f, 52.0f, (char*)"式托式", Color);
 	CursorManager::GetInstance()->WriteBuffer(
@@ -148,9 +149,9 @@ void Menu::Render()
 		61.5f, 54.0f, (char*)"戌式式式式式戎 ", Color);
 	// 80 3偃 3 
 
-}
+} 
 
-void Menu::MoveCount()
+void Menu1::MoveCount()
 {
 	if (Count <= 25)
 		++Count;
@@ -159,8 +160,6 @@ void Menu::MoveCount()
 		Count = 0;
 }
 
-void Menu::Release()
+void Menu1::Release()
 {
-
 }
-
