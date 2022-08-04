@@ -30,6 +30,7 @@ void Menu2::Update()
 	if (dwKey & KEY_ENTER)
 	{
 		SceneManager::GetInstance()->SetScene(STAGE);
+		// ObManager->SetPlayerType(1);
 	}
 }
 

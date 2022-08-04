@@ -11,12 +11,10 @@
 #include "ScrollBox.h"
 #include"ObjectPool.h"
 #include "Prototype.h"
-#include "Player1.h"
 #include "Enemy1.h"
 #include "BulletBridge.h"
 #include "PlayerBullet.h"
 #include "Cloud.h"
-#include "Cloud1.h"
 #include"BulletBridge2.h"
 #include "EnemyBullet.h"
 
@@ -39,8 +37,6 @@ void Stage::Initialize()
 
 	//eEnemy->SetPosition(40.0f,30.0f);
 
-
-
 	pUI = new ScrollBox;
 	pUI->Initialize();
 }
@@ -53,6 +49,7 @@ void Stage::Update()
 	list<Object*>* pCloudList = ObjectManager::GetInstance()->GetObjectList("Cloud");
 
 	MoveCount();
+
 	Bilde_Stage();
 	Bilde_BackGround();
 	Score();
@@ -127,27 +124,61 @@ void Stage::Update()
 		}
 	}
 
-	BulletBridge* PB = new PlayerBullet; 
+	BulletBridge* PB = new PlayerBullet;
 	BulletBridge2* EB = new EnemyBullet;
-	EnemyBridge* E_Hp = new Enemy1; 
-	Player Player; 
+	EnemyBridge* Enemy = new Enemy1;
 
 	// 충돌
 	if (pPlayer != nullptr) 
 	{ 
-		if (pEnemyList != nullptr) 
-		{ 
-			for (list<Object*>::iterator Enemyiter = pEnemyList->begin(); 
-				Enemyiter != pEnemyList->end(); ) 
-			{ 
-				Del_BM = false; 
-				if (CollisionManager::RectCollision(pPlayer, *Enemyiter)) 
-				{ 
-					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15); 
-					 
-					--Player.P_HP; 
-					Del_BM = true; 
-				} 
+		if (pEnemyList != nullptr)
+		{
+			for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
+				Enemyiter != pEnemyList->end(); )
+			{
+				Del_BM = false;
+
+				if (CollisionManager::RectCollision(pPlayer, *Enemyiter))
+				{
+					CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+
+					--P_HP;
+					Del_BM = true;
+				}
+
+				Del_Player = false;
+				// 플레이어와 적 총알 충돌
+				if (pBulletList2 != nullptr)
+				{
+					for (list<Object*>::iterator Bulletiter2 = pBulletList2->begin();
+						Bulletiter2 != pBulletList2->end(); )
+					{
+						if (CollisionManager::RectCollision(*Bulletiter2, pPlayer))
+						{
+							Bulletiter2 = ObjectManager::GetInstance()->ThrowObject(Bulletiter2, (*Bulletiter2));
+							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+
+							Del_Player = true;
+						}
+						else
+							++Bulletiter2;
+					}
+				}
+				if (Del_Player == true)
+				{
+					--P_HP;
+					// 터지는 이펙트와 Player데미지 닳게	
+					if (P_HP == 1)
+					{
+						// 기존 이미지 지우고
+						// 터지는 모션 + 리스폰
+						CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
+					}
+					if (P_HP <= 0)
+					{
+						//  GameOver;
+					}
+				}
 
 				if (pBulletList != nullptr)
 				{
@@ -159,45 +190,20 @@ void Stage::Update()
 							Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
 							CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 
-							E_Hp->E_Hp -= PB->PB_Damage;
+							// 에너미 체력 가져오기
+							Enemy->E_Hp -= PB_Damage;
 
-							if (E_Hp->E_Hp <= 0)
+							if (Enemy->E_Hp <= 0)
 							{
-								CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"사망", 15);
-								
+								CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"적 사망", 15);
 								Del_BM = true;
 							}
 						}
 						else
 							++Bulletiter;
 					}
-					
-					// 플레이어와 적 총알 충돌
-					/*
-					if (pBulletList2 != nullptr)
-					{
-						for (list<Object*>::iterator Bulletiter = pBulletList2->begin();
-							Bulletiter != pBulletList2->end(); )
-						{
-							if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
-							{
-								Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-								CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-
-								Player.P_HP -= EB->EB_Damage;
-
-								if (Player.P_HP <= 0)
-								{
-									CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"사망", 15);
-
-									Del_BM = true;
-								}
-							}
-							else
-								++Bulletiter;
-					}
-					*/
 				}
+
 				if (Del_BM == true )
 				{
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
@@ -205,18 +211,18 @@ void Stage::Update()
 					// 몬스터 아이템 떨구기
 
 					// 터지는 이펙트와 Player데미지 닳게	
-					if (Player.P_HP == 1)
+					if (P_HP == 1)
 					{
+						// 기존 이미지 지우고
 						// 터지는 모션 + 리스폰
 						CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
-
 					}
-					if (Player.P_HP <= 0)
+					if (P_HP <= 0)
 					{
 						//  GameOver;
 					}
-
 				}
+
 				if (Del_BM == false)
 				{
 					++Enemyiter;
@@ -224,6 +230,15 @@ void Stage::Update()
 			}
 		}
 	}
+
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 2.0f, (char*)"Player_Life : ", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		15.0f, 2.0f, P_HP, 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 3.0f, (char*)"Enemy_Life : ", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		15.0f, 3.0f, Enemy->E_Hp, 15);
 
 	if (Check)
 		pUI->Update();
@@ -256,6 +271,7 @@ void Stage::MoveCount()
 		Count = 0;
 }
 
+// stage관련
 void Stage::Bilde_Stage()
 {
 	 if (Show_Stage == 0)
@@ -286,23 +302,19 @@ void Stage::Bilde_Stage()
 	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
 }
 
+// 구름 리스폰
 void Stage::Bilde_BackGround()
 {
 	if (Count == 30)
 	{ 
-		// for (int i = 0; i < 2; ++i)
-		// {
-		// 	srand(DWORD(GetTickCount64() * (i + 3)));
-		// 
-		// 	Bridge* pBridge = new Cloud1;
-		// 	ObjectManager::GetInstance()->AddObject("Cloud", pBridge);
-		// 	bCloud = ObjectManager::GetInstance()->GetObjectList("Cloud")->back();
-		// 
-		// 	bCloud->SetPosition((float)(rand() % 43), (float)(rand() % -2));
-		// }
+		ObjectManager::GetInstance()->AddObject("Cloud");
+		bCloud = ObjectManager::GetInstance()->GetObjectList("Cloud")->back();
+
+		bCloud->SetPosition((float)(rand() % 76), (float)(rand() % -2));
 	}
 }
 
+// 왼쪽상단 점수 표시
 void Stage::Score()
 {
 	// 출력어케 할껀지 왼쪽상단

@@ -16,8 +16,6 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
-	int PB_Damage;
-
 	BulletBridge() : Speed(0), Color(0) , Buffer(nullptr) {};
 	virtual ~BulletBridge() {};
 };

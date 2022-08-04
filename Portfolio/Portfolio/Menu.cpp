@@ -24,13 +24,12 @@ void Menu::Update()
 	if (dwKey & KEY_ENTER) 
 	{
 		SceneManager::GetInstance()->SetScene(STAGE); 
+		// ObManager->SetPlayerType(0);
 	}
 }
 
 void Menu::Render()
 {
-	MoveCount();
-
 	// 비행기 이미지
 	CursorManager::GetInstance()->WriteBuffer(
 		10.0f, 3.0f, (char*)"          .~ ", Color);

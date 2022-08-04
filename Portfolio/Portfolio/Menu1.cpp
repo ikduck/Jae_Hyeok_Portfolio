@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
+#include "ObjectManager.h"
 
 Menu1::Menu1() : Color(0), Count(0) { } 
 Menu1::~Menu1() { } 
@@ -10,6 +11,7 @@ Menu1::~Menu1() { }
 void Menu1::Initialize() 
 {
 	Color = 15;
+
 }
 
 void Menu1::Update() 

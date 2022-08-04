@@ -3,6 +3,7 @@
 
 class Object;
 class UserInterface;
+class Player;
 class Stage : public Scene
 {
 private:
@@ -12,18 +13,22 @@ private:
 	UserInterface* pUI;
 
 	int Check;
-	int PB_Dam;
-	int E_Hp;
+	// int PB_Dam;
 
 	// Enemy 삭제 확인 bool
 	bool Del_BM;
-
+	bool Del_Player;
 	// stage구현
 	int Show_Stage = 0;
 	int Count;
 	int E_Count;
 
 	int InGame_Score;
+
+
+	int P_HP = 2;
+
+	int PB_Damage = 1;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

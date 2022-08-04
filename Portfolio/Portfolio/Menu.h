@@ -1,12 +1,13 @@
 #pragma once
 #include "Scene.h"
-#include "PlayerInfo.h"
+#include "ObjectManager.h"
 
 class Menu : public Scene
 {
 private:
 	int Color;
 	int Count;
+	// ObjectManager* ObManager;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

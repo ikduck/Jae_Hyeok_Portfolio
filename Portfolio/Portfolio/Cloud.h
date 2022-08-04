@@ -6,8 +6,6 @@ class Cloud : public Object
 private:
 	int Color;
 	int Speed;
-
-	vector<string> TextureList;
 public:
 	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;

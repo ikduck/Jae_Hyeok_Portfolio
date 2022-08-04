@@ -8,6 +8,7 @@ protected:
 	Transform TransInfo;
 	string strKey;
 	char* Buffer[MAX_SIZE];
+	char* CBuffer[3];
 	Bridge* pBridge; 
 
 public:

@@ -5,25 +5,24 @@
 #include "InputManager.h"
 #include "PlayerBullet.h"
 #include "Object.h"
-#include "ObjectManager.h"
 #include "Menu.h"
 #include "Menu2.h"
 
 Player::Player() { }
-Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0), P_HP(0) { }
+Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0) { }
 Player::~Player() { Release(); }
 
 Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	if (P_Info.GetPlayerType() ==  0)
+	if ( 0) // ObManager->GetPlayerType() ==
 	{
 		Buffer[0] = (char*)"¦«¦«¦«";
 		Buffer[1] = (char*)"¦§¦¡¦©";
 	}
 
-	if (P_Info.GetPlayerType() == 1)
+	if (1) // ObManager->GetPlayerType() == 
 	{
 		Buffer[0] = (char*)"¦¡¦«¦¡";
 		Buffer[1] = (char*)"  ¦ª  ";
@@ -36,7 +35,6 @@ Object* Player::Initialize(string _Key)
 
 	Speed = 1.0f;
 	Color = 10;  // 9 ÆÄ¶û
-	P_HP = 2;
 
 	return this;
 }

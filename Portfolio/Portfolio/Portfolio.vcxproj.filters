@@ -112,20 +112,14 @@
     <Filter Include="소스 파일\02. Object\Bullet2\BulletBridge2\E_HomingBullet">
       <UniqueIdentifier>{4efe98a3-0af2-4d99-9f04-47ac4a66e05b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01. Scene\Menu\Menu2">
-      <UniqueIdentifier>{d4e386ac-6c6b-46d0-922a-46cb3de07ec1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01. Scene\Menu\Menu1">
       <UniqueIdentifier>{c034371b-4274-47b2-afd5-205d9aa8cec4}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02. Object\Cloud">
       <UniqueIdentifier>{4eea8772-f176-4282-8d1c-34662ef897d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02. Object\Cloud\CloudBridge">
-      <UniqueIdentifier>{bc16c8a2-090f-4dfc-9d3e-baaac864923e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02. Object\Cloud\CloudBridge\Cloud1">
-      <UniqueIdentifier>{d455d59d-e9a8-4d6a-9156-126b7230fb3e}</UniqueIdentifier>
+    <Filter Include="소스 파일\01. Scene\Menu\Menu2">
+      <UniqueIdentifier>{d4e386ac-6c6b-46d0-922a-46cb3de07ec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -198,14 +192,11 @@
     <ClCompile Include="Menu1.cpp">
       <Filter>소스 파일\01. Scene\Menu\Menu1</Filter>
     </ClCompile>
-    <ClCompile Include="Menu2.cpp">
-      <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
-    </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>소스 파일\02. Object\Cloud</Filter>
     </ClCompile>
-    <ClCompile Include="Cloud1.cpp">
-      <Filter>소스 파일\02. Object\Cloud\CloudBridge\Cloud1</Filter>
+    <ClCompile Include="Menu2.cpp">
+      <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,20 +302,14 @@
     <ClInclude Include="Menu1.h">
       <Filter>소스 파일\01. Scene\Menu\Menu1</Filter>
     </ClInclude>
-    <ClInclude Include="Menu2.h">
-      <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
-    </ClInclude>
     <ClInclude Include="Cloud.h">
       <Filter>소스 파일\02. Object\Cloud</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBridge.h">
-      <Filter>소스 파일\02. Object\Cloud\CloudBridge</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>소스 파일\02. Object\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Cloud1.h">
-      <Filter>소스 파일\02. Object\Cloud\CloudBridge\Cloud1</Filter>
+    <ClInclude Include="Menu2.h">
+      <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
