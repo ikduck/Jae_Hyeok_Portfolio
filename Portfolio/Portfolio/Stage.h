@@ -23,12 +23,11 @@ private:
 	int Count;
 	int E_Count;
 
+	// Player 관련 변수
 	int InGame_Score;
+	int P_HP;
+	int PB_Damage;
 
-
-	int P_HP = 2;
-
-	int PB_Damage = 1;
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
@@ -41,6 +40,11 @@ public:
 	void Bilde_BackGround();
 	// 점수 화면 출력할거임
 	void Score();
+	
+	void ShowPlayerLife();
+
+	//게임 끝나면 초기화 함
+	void ResetPlayerInfo();
 
 	Stage();
 	virtual ~Stage();

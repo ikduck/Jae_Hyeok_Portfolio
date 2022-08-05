@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include"CursorManager.h"
 #include "Player.h"
+#include "PlayerInfo.h"
 
 Menu::Menu() : Color(0) , Count(0) { }
 Menu::~Menu() { }
@@ -18,13 +19,13 @@ void Menu::Update()
 
 	if (dwKey & KEY_RIGHT)
 	{
+		PlayerInfo::GetInstance()->SetPlayerType(1);
 		SceneManager::GetInstance()->SetScene(MENU2);
 	}
 
 	if (dwKey & KEY_ENTER) 
 	{
 		SceneManager::GetInstance()->SetScene(STAGE); 
-		// ObManager->SetPlayerType(0);
 	}
 }
 

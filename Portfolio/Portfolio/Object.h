@@ -33,7 +33,7 @@ public:
 
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
 
-
+	// 포지션을 받아오다가 안받아오게되서 터짐
 
 public:
 	Object();

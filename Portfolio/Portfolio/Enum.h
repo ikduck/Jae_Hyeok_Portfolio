@@ -6,6 +6,7 @@ enum SCENEID
 	MENU,
 	MENU2,
 	STAGE,
+	GAMEOVER,
 	EXIT,
 	// 위는 상수
 };

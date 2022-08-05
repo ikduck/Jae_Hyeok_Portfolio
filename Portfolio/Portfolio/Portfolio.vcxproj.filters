@@ -121,6 +121,9 @@
     <Filter Include="소스 파일\01. Scene\Menu\Menu2">
       <UniqueIdentifier>{d4e386ac-6c6b-46d0-922a-46cb3de07ec1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Scene\GameOver">
+      <UniqueIdentifier>{6619e3be-a825-41b0-9222-98181ce66220}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -197,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="Menu2.cpp">
       <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>소스 파일\01. Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInfo.cpp">
+      <Filter>소스 파일\97. PlayerInfo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="Menu2.h">
       <Filter>소스 파일\01. Scene\Menu\Menu2</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>소스 파일\01. Scene\GameOver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

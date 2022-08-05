@@ -3,12 +3,14 @@
 #include "InputManager.h"
 #include "CursorManager.h"
 #include "Prototype.h"
+#include "PlayerInfo.h"
 
 MainUpdate::MainUpdate()  { }
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
+	PlayerInfo::GetInstance()->SetPlayerInfo(); // 시작할때 플레이어 정보 초기화?
 	Prototype::GetInstance()->initialize();
 	CursorManager::GetInstance()->CreateBuffer(ConsoleWidthSize, ConsoleHeightSize);
 	SceneManager::GetInstance()->SetScene(LOGO);

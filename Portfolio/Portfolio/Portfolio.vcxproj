@@ -146,6 +146,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="main.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInfo.cpp" />
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -180,6 +182,7 @@
     <ClInclude Include="EnemyBridge.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logo.h" />

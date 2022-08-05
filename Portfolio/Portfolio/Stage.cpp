@@ -17,6 +17,7 @@
 #include "Cloud.h"
 #include"BulletBridge2.h"
 #include "EnemyBullet.h"
+#include "PlayerInfo.h"
 
 Stage::Stage() : Check() { }
 Stage::~Stage() { Release(); }
@@ -24,7 +25,7 @@ Stage::~Stage() { Release(); }
 void Stage::Initialize()
 {
 	Check = 0;
-	InGame_Score = 0;
+	ResetPlayerInfo();
 	ObjectManager::GetInstance()->AddObject("Player");
 	// 한번만 실행시켜주면 되서 update에 있을 필요가없음
 	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
@@ -53,6 +54,7 @@ void Stage::Update()
 	Bilde_Stage();
 	Bilde_BackGround();
 	Score();
+	ShowPlayerLife();
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
@@ -124,8 +126,6 @@ void Stage::Update()
 		}
 	}
 
-	BulletBridge* PB = new PlayerBullet;
-	BulletBridge2* EB = new EnemyBullet;
 	EnemyBridge* Enemy = new Enemy1;
 
 	// 충돌
@@ -177,8 +177,12 @@ void Stage::Update()
 					if (P_HP <= 0)
 					{
 						//  GameOver;
+						// ResetPlayerInfo(); // 값전부 초기화 해주고
+						// SceneManager::GetInstance()->SetScene(GAMEOVER);
+						// 계속 위치값을 받아오다가 안받와서 터짐
 					}
 				}
+				// GameOver화면 띄우고 -> Logo로 다시이동 // 변수 초기화 
 
 				if (pBulletList != nullptr)
 				{
@@ -209,18 +213,6 @@ void Stage::Update()
 					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 					InGame_Score += 1000;
 					// 몬스터 아이템 떨구기
-
-					// 터지는 이펙트와 Player데미지 닳게	
-					if (P_HP == 1)
-					{
-						// 기존 이미지 지우고
-						// 터지는 모션 + 리스폰
-						CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
-					}
-					if (P_HP <= 0)
-					{
-						//  GameOver;
-					}
 				}
 
 				if (Del_BM == false)
@@ -230,15 +222,6 @@ void Stage::Update()
 			}
 		}
 	}
-
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 2.0f, (char*)"Player_Life : ", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		15.0f, 2.0f, P_HP, 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 3.0f, (char*)"Enemy_Life : ", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		15.0f, 3.0f, Enemy->E_Hp, 15);
 
 	if (Check)
 		pUI->Update();
@@ -324,11 +307,33 @@ void Stage::Score()
 		5.0f, 1.0f, InGame_Score, 15);
 }
 
+void Stage::ShowPlayerLife()
+{
+	switch (P_HP)
+	{
+	case 0:
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"", 15);
+		break;
+	case 1:
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"◈", 15);
+		break;
+	case 2:
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"◈◈", 15);
+		break;
+	}
+
+	CursorManager::GetInstance()->WriteBuffer(
+		0.0f, 2.0f, (char*)"Player_Life : ", 15);
+}
+
+void Stage::ResetPlayerInfo()
+{
+	P_HP = 2;
+	PB_Damage = 1;
+	InGame_Score = 0;
+}
+
 // 총맞았을때 몬스터 지워지게 하는법
-
 // 충돌해야되는 것들
-// 1. 아이템과 플레이어의 충돌
-// 2. 적과 플레이어의 충돌
-// 4. 적의 총알과 플레이어의 충돌
-
+// 1. 아이템과 플레이어의 충돌 // 음..
 

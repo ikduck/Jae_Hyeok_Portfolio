@@ -10,7 +10,6 @@ private:
 	ObjectManager();
 	// map<string, list<Object*>> ObjectList;  //list ¼±¾ð
 	map<string, list<Object*>>* EnableList;
-	int PlayerType;
 public:
 	static ObjectManager* GetInstance()
 	{
@@ -26,11 +25,6 @@ public:
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where, Object* _Object);
 	void Update();
 	void Render();
-
-
-
-	 int GetPlayerType() const { return PlayerType; }
-	 void SetPlayerType(int _PlayerType) { PlayerType = _PlayerType; }
 
 	~ObjectManager();
 };

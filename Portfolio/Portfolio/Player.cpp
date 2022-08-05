@@ -7,6 +7,7 @@
 #include "Object.h"
 #include "Menu.h"
 #include "Menu2.h"
+#include "PlayerInfo.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo),  Color(0), Speed(0) { }
@@ -15,18 +16,32 @@ Player::~Player() { Release(); }
 Object* Player::Initialize(string _Key)
 {
 	strKey = _Key;
-
-	if ( 0) // ObManager->GetPlayerType() ==
+	
+	switch (PlayerInfo::GetInstance()->GetPlayerType())
 	{
+	case 0:
 		Buffer[0] = (char*)"¦«¦«¦«";
+		Buffer[1] = (char*)"¦§¦¡¦©";
+		break;
+	case 1:
+		Buffer[0] = (char*)"¦¡¦«¦¡";
+		Buffer[1] = (char*)"  ¦ª  ";
+		break;
+	}
+
+	/*
+	if ( PlayerInfo::GetInstance()->GetPlayerType() ==  0) // ObManager->GetPlayerType() ==
+	{
+			Buffer[0] = (char*)"¦«¦«¦«";
 		Buffer[1] = (char*)"¦§¦¡¦©";
 	}
 
-	if (1) // ObManager->GetPlayerType() == 
+	else if (PlayerInfo::GetInstance()->GetPlayerType() == 1) // ObManager->GetPlayerType() == 
 	{
 		Buffer[0] = (char*)"¦¡¦«¦¡";
 		Buffer[1] = (char*)"  ¦ª  ";
 	}
+	*/
 
 	TransInfo.Position = Vector3(40.0f, 50.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
@@ -41,6 +56,18 @@ Object* Player::Initialize(string _Key)
 
 int Player::Update()
 {
+	switch (PlayerInfo::GetInstance()->GetPlayerType())
+	{
+	case 0:
+		Buffer[0] = (char*)"¦«¦«¦«";
+		Buffer[1] = (char*)"¦§¦¡¦©";
+		break;
+	case 1:
+		Buffer[0] = (char*)"¦¡¦«¦¡";
+		Buffer[1] = (char*)"  ¦ª  ";
+		break;
+	}
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_UP)
