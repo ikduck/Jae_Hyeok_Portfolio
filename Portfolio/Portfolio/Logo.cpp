@@ -32,7 +32,7 @@ void Logo::Update()
 void Logo::Render()
 {
 	MoveCount();
-
+	
 	CursorManager::GetInstance()->WriteBuffer(
 		10.5f, 15.0f, (char*)"  #####  ####### ######  ### #    # ####### ######   ##### ", Color);
 	CursorManager::GetInstance()->WriteBuffer(
@@ -70,6 +70,7 @@ void Logo::Render()
 	CursorManager::GetInstance()->WriteBuffer(
 		30.0f, 40.0f, (char*)"Press enter to start", Color);
 	}
+
 }
 
 void Logo::MoveCount()

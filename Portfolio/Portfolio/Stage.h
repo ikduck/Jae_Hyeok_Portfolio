@@ -18,6 +18,9 @@ private:
 	// Enemy 삭제 확인 bool
 	bool Del_BM;
 	bool Del_Player;
+
+	bool Stop_Game;
+
 	// stage구현
 	int Show_Stage = 0;
 	int Count;
@@ -45,6 +48,8 @@ public:
 
 	//게임 끝나면 초기화 함
 	void ResetPlayerInfo();
+	void GameClear();
+	void GameOver();
 
 	Stage();
 	virtual ~Stage();

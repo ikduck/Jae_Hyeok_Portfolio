@@ -46,7 +46,6 @@ void GameOver::Render()
 		CursorManager::GetInstance()->WriteBuffer(
 			35.0f, 36.0f, (char*)"Press enter", Color);
 	}
-
 }
 
 void GameOver::MoveCount()
