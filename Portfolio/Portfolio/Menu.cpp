@@ -5,12 +5,14 @@
 #include "Player.h"
 #include "PlayerInfo.h"
 
-Menu::Menu() : Color(0) , Count(0) { }
+Menu::Menu() : Color(0) { }
 Menu::~Menu() { }
 
 void Menu::Initialize()
 {
-	Color = 15;
+	Color = 10;
+	Color1 = 15;
+	Color2 = 9;
 }
 
 void Menu::Update()
@@ -113,25 +115,25 @@ void Menu::Render()
 	CursorManager::GetInstance()->WriteBuffer(
 		4.0f, 42.0f, (char*)"  *$#####@##@@@@#@@@###@###@@;", Color);
 	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 44.0f, (char*)"────────────────────────────────────────", Color);
+		0.0f, 44.0f, (char*)"────────────────────────────────────────", Color1);
 
 	// select 버튼
 	CursorManager::GetInstance()->WriteBuffer(
-		9.5f, 45.0f, (char*)" #########", Color);
+		9.5f, 45.0f, (char*)" #########", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		11.5f, 46.0f, (char*)"#     #", Color);
+		11.5f, 46.0f, (char*)"#     #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		12.5f, 47.0f, (char*)"#   #", Color);
+		12.5f, 47.0f, (char*)"#   #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		13.5f, 48.0f, (char*)"# #", Color);
+		13.5f, 48.0f, (char*)"# #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		14.5f, 49.0f, (char*)"#", Color);
+		14.5f, 49.0f, (char*)"#", Color1);
 
 	// 비행기 선택
 	CursorManager::GetInstance()->WriteBuffer(
-		11.5f, 52.0f, (char*)"┼┴┼", Color);
+		11.5f, 52.0f, (char*)"┼┴┼", Color2);
 	CursorManager::GetInstance()->WriteBuffer(
-		11.5f, 53.0f, (char*)"├─┤", Color);
+		11.5f, 53.0f, (char*)"├─┤", Color2);
 		
 	CursorManager::GetInstance()->WriteBuffer(
 		36.5f, 52.0f, (char*)"─┼─", Color);
@@ -139,24 +141,26 @@ void Menu::Render()
 		36.5f, 53.0f, (char*)"  ┴  ", Color);
 
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 51.0f, (char*)"┌─────┐", Color);
+		61.5f, 51.0f, (char*)"┌─────┐", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 52.0f, (char*)"│ comming  │", Color);
+		61.5f, 52.0f, (char*)"│ comming  │", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 53.0f, (char*)"│   soon   │", Color);
+		61.5f, 53.0f, (char*)"│   soon   │", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 54.0f, (char*)"└─────┘ ", Color);
+		61.5f, 54.0f, (char*)"└─────┘ ", Color1);
 	// 80 3개 3 
 
 }
 
 void Menu::MoveCount()
 {
+	/*
 	if (Count <= 25)
 		++Count;
 
 	else
 		Count = 0;
+	*/
 }
 
 void Menu::Release()

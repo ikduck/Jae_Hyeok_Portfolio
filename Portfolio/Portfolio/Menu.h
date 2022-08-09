@@ -6,8 +6,9 @@ class Menu : public Scene
 {
 private:
 	int Color;
-	int Count;
-	// ObjectManager* ObManager;
+	int Color1;
+	int Color2;
+
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

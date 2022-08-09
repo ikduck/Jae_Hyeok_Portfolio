@@ -5,6 +5,9 @@ class Menu2 : public Scene
 {
 private:
 	int Color;
+	int Color1;
+	int Color2;
+
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;

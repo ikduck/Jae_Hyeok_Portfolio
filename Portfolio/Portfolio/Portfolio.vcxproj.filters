@@ -124,6 +124,15 @@
     <Filter Include="소스 파일\01. Scene\GameOver">
       <UniqueIdentifier>{6619e3be-a825-41b0-9222-98181ce66220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02. Object\Boss">
+      <UniqueIdentifier>{74f1cb72-cbc2-4de0-b673-09136d695639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossBridge">
+      <UniqueIdentifier>{d988bf8f-9a8d-40b5-8636-aa4a70fa8bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Object\Boss\BossBridge\Boss1">
+      <UniqueIdentifier>{97b0a5fb-d66c-4bf7-97bd-4e7c46488999}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -206,6 +215,12 @@
     </ClCompile>
     <ClCompile Include="PlayerInfo.cpp">
       <Filter>소스 파일\97. PlayerInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\02. Object\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>소스 파일\02. Object\Boss\BossBridge\Boss1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +337,15 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>소스 파일\01. Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\02. Object\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBridge.h">
+      <Filter>소스 파일\02. Object\Boss\BossBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>소스 파일\02. Object\Boss\BossBridge\Boss1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

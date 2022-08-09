@@ -24,6 +24,7 @@ Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
+	Stage_Over = false;
 	Stop_Game = false;
 	Check = 0;
 	ResetPlayerInfo();
@@ -166,6 +167,7 @@ void Stage::Update()
 								++Bulletiter2;
 						}
 					}
+
 					if (Del_Player == true)
 					{
 						// 터지는 이펙트와 Player데미지 닳게	
@@ -280,11 +282,11 @@ void Stage::Bilde_Stage()
 	 				ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
 	 				eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
 	 
-	 				eEnemy->SetPosition((float)(rand() % 76), (float)(rand() % -2));
+	 				eEnemy->SetPosition(((float)(rand() % 76)+2), (float)(rand() % 2));
 	 
 	 			++E_Count;
 	 
-	 			if(E_Count == 50)
+	 			if(E_Count == 10)
 	 				{
 	 	   				// E_Count가 50이 되면 스테이지 넘어감
 	 				++Show_Stage;
@@ -292,6 +294,7 @@ void Stage::Bilde_Stage()
 	 			}
 	 		}  
 	 }
+	 Stage_Over = true;
 	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
 }
 
@@ -325,10 +328,10 @@ void Stage::ShowPlayerLife()
 		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"", 15);
 		break;
 	case 1:
-		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"◈", 15);
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"♡", 15);
 		break;
 	case 2:
-		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"◈◈", 15);
+		CursorManager::GetInstance()->WriteBuffer(15.0f, 2.0f, (char*)"♡♡", 15);
 		break;
 	}
 
@@ -396,7 +399,6 @@ void Stage::GameOver()
 	}
 }
 
-// 총맞았을때 몬스터 지워지게 하는법
 // 충돌해야되는 것들
 // 1. 아이템과 플레이어의 충돌 // 음..
 

@@ -20,10 +20,13 @@ private:
 	bool Del_Player;
 
 	bool Stop_Game;
+	bool Stage_Clear;
+	bool Stage_Over;
 
 	// stage구현
 	int Show_Stage = 0;
 	int Count;
+	int Count1;
 	int E_Count;
 
 	// Player 관련 변수
@@ -38,9 +41,13 @@ public:
 	virtual void Release()override;
 
 	void Enable_UI();
+
 	void MoveCount();
+	void MoveCount_Stage();
+
 	void Bilde_Stage();
 	void Bilde_BackGround();
+
 	// 점수 화면 출력할거임
 	void Score();
 	

@@ -10,7 +10,9 @@ Menu2::~Menu2() { }
 
 void Menu2::Initialize()
 {
-	Color = 15;
+	Color = 10;
+	Color1 = 15;
+	Color2 = 9;
 }
 
 void Menu2::Update()
@@ -118,19 +120,19 @@ void Menu2::Render()
 	CursorManager::GetInstance()->WriteBuffer(
 		8.0f, 42.0f, (char*)"-;*####=!####@@@=:.", Color);
 	CursorManager::GetInstance()->WriteBuffer(
-		0.0f, 44.0f, (char*)"────────────────────────────────────────", Color);
+		0.0f, 44.0f, (char*)"────────────────────────────────────────", Color1);
 
 	// select 버튼
 	CursorManager::GetInstance()->WriteBuffer(
-		34.5f, 45.0f, (char*)" #########", Color);
+		34.5f, 45.0f, (char*)" #########", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		36.5f, 46.0f, (char*)"#     #", Color);
+		36.5f, 46.0f, (char*)"#     #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		37.5f, 47.0f, (char*)"#   #", Color);
+		37.5f, 47.0f, (char*)"#   #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		38.5f, 48.0f, (char*)"# #", Color);
+		38.5f, 48.0f, (char*)"# #", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		39.5f, 49.0f, (char*)"#", Color);
+		39.5f, 49.0f, (char*)"#", Color1);
 
 	// 비행기 선택
 	CursorManager::GetInstance()->WriteBuffer(
@@ -139,18 +141,18 @@ void Menu2::Render()
 		11.5f, 53.0f, (char*)"├─┤", Color);
 
 	CursorManager::GetInstance()->WriteBuffer(
-		36.5f, 52.0f, (char*)"─┼─", Color);
+		36.5f, 52.0f, (char*)"─┼─", Color2);
 	CursorManager::GetInstance()->WriteBuffer(
-		36.5f, 53.0f, (char*)"  ┴  ", Color);
+		36.5f, 53.0f, (char*)"  ┴  ", Color2);
 
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 51.0f, (char*)"┌─────┐", Color);
+		61.5f, 51.0f, (char*)"┌─────┐", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 52.0f, (char*)"│ comming  │", Color);
+		61.5f, 52.0f, (char*)"│ comming  │", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 53.0f, (char*)"│   soon   │", Color);
+		61.5f, 53.0f, (char*)"│   soon   │", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
-		61.5f, 54.0f, (char*)"└─────┘ ", Color);
+		61.5f, 54.0f, (char*)"└─────┘ ", Color1);
 
 }
 
