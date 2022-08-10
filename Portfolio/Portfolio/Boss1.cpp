@@ -16,7 +16,9 @@ void Boss1::Initialize()
 	Buffer[3] = (char*)"ㅁ";
 	Buffer[4] = (char*)"ㅁ";
 	Buffer[5] = (char*)"ㅁ";
+	/*
 
+	*/
 	// list로 , Player는 따로 빼서  , Monster도 따로 만들어주기
 
 	Speed = 0.3f;

@@ -119,15 +119,15 @@ void Menu::Render()
 
 	// select 버튼
 	CursorManager::GetInstance()->WriteBuffer(
-		9.5f, 45.0f, (char*)" #########", Color1);
+		9.5f, 45.0f, (char*)" #########", 14);
 	CursorManager::GetInstance()->WriteBuffer(
-		11.5f, 46.0f, (char*)"#     #", Color1);
+		11.5f, 46.0f, (char*)"#     #", 14);
 	CursorManager::GetInstance()->WriteBuffer(
-		12.5f, 47.0f, (char*)"#   #", Color1);
+		12.5f, 47.0f, (char*)"#   #", 14);
 	CursorManager::GetInstance()->WriteBuffer(
-		13.5f, 48.0f, (char*)"# #", Color1);
+		13.5f, 48.0f, (char*)"# #", 14);
 	CursorManager::GetInstance()->WriteBuffer(
-		14.5f, 49.0f, (char*)"#", Color1);
+		14.5f, 49.0f, (char*)"#", 14);
 
 	// 비행기 선택
 	CursorManager::GetInstance()->WriteBuffer(

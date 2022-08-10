@@ -12,6 +12,11 @@ private:
 	Object* bCloud;
 	UserInterface* pUI;
 
+	list<Object*>* pBulletList;
+	list<Object*>* pBulletList2;
+	list<Object*>* pEnemyList;
+	list<Object*>* pCloudList;
+
 	int Check;
 	// int PB_Dam;
 
@@ -30,6 +35,8 @@ private:
 	int E_Count;
 
 	// Player 관련 변수
+	bool B_Player;
+
 	int InGame_Score;
 	int P_HP;
 	int PB_Damage;

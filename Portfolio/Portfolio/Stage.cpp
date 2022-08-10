@@ -26,12 +26,21 @@ void Stage::Initialize()
 {
 	Stage_Over = false;
 	Stop_Game = false;
+	B_Player = false;
 	Check = 0;
 	ResetPlayerInfo();
 
-	ObjectManager::GetInstance()->AddObject("Player");
 	// 한번만 실행시켜주면 되서 update에 있을 필요가없음
-	pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
+	if(B_Player == false)
+	{
+		ObjectManager::GetInstance()->AddObject("Player");
+		pPlayer = ObjectManager::GetInstance()->GetObjectList("Player")->front();
+		B_Player = true;
+	}
+	//if (B_Player == true)
+	//{
+		// 포지션만 원위치
+	//}
 
 	// Bridge* pBridge = new Enemy1;
 	// ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
@@ -45,13 +54,13 @@ void Stage::Initialize()
 
 void Stage::Update()
 {
+	pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
+	pBulletList2 = ObjectManager::GetInstance()->GetObjectList("Bullet2");
+	pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
+	pCloudList = ObjectManager::GetInstance()->GetObjectList("Cloud");
+
 	if (Stop_Game == false)
 	{
-		list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObjectList("Bullet");
-		list<Object*>* pBulletList2 = ObjectManager::GetInstance()->GetObjectList("Bullet2");
-		list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
-		list<Object*>* pCloudList = ObjectManager::GetInstance()->GetObjectList("Cloud");
-
 		MoveCount();
 
 		Bilde_Stage();
@@ -63,7 +72,7 @@ void Stage::Update()
 
 		if (dwKey & KEY_TAB)
 		{
-			Enable_UI();
+			// Enable_UI(); 
 		}
 
 		if (dwKey & KEY_ESCAPE)
@@ -88,7 +97,7 @@ void Stage::Update()
 				else
 					++iter;
 			}
-		}
+		} 
 		if (pBulletList2 != nullptr)
 		{
 			for (list<Object*>::iterator iter = pBulletList2->begin();
@@ -99,7 +108,7 @@ void Stage::Update()
 				else
 					++iter;
 			}
-		}
+		} 
 		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator iter = pEnemyList->begin();
@@ -116,7 +125,7 @@ void Stage::Update()
 				else
 					++iter;
 			}
-		}
+		} 
 		if (pCloudList != nullptr)
 		{
 			for (list<Object*>::iterator iter = pCloudList->begin();
@@ -127,7 +136,7 @@ void Stage::Update()
 				else
 					++iter;
 			}
-		}
+		} 
 
 		EnemyBridge* Enemy = new Enemy1;
 
@@ -229,6 +238,7 @@ void Stage::Update()
 			}
 		}
 
+
 		if (Check)
 			pUI->Update();
 	}	
@@ -236,6 +246,11 @@ void Stage::Update()
 	if (Stop_Game == true)
 	{
 		GameOver();
+	}
+
+	if (Stage_Over == true)
+	{
+		GameClear();
 	}
 }
 
@@ -247,10 +262,6 @@ void Stage::Render()
 	 	pUI->Render();
 }
 
-void Stage::Release()
-{	
-
-}
 
 void Stage::Enable_UI()
 {
@@ -282,19 +293,20 @@ void Stage::Bilde_Stage()
 	 				ObjectManager::GetInstance()->AddObject("Enemy", pBridge);
 	 				eEnemy = ObjectManager::GetInstance()->GetObjectList("Enemy")->back();
 	 
-	 				eEnemy->SetPosition(((float)(rand() % 76)+2), (float)(rand() % 2));
+	 				eEnemy->SetPosition(((float)(rand() % 76)), (float)(rand() % 3));
 	 
 	 			++E_Count;
 	 
 	 			if(E_Count == 10)
 	 				{
-	 	   				// E_Count가 50이 되면 스테이지 넘어감
+	 	   				// E_Count가 10이 되면 스테이지 넘어감
 	 				++Show_Stage;
+					Stage_Over = true;
 	 				}
 	 			}
 	 		}  
-	 }
-	 Stage_Over = true;
+	 } 
+	 
 	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
 }
 
@@ -363,7 +375,19 @@ void Stage::GameClear()
 	CursorManager::GetInstance()->WriteBuffer(
 		17.0f, 31.0f, (char*)" ######  ######## ######## ##     ## ##     ##", 14);
 
-	
+	if (Count >= 5 && Count <= 25)
+	{
+		CursorManager::GetInstance()->WriteBuffer(
+			35.0f, 36.0f, (char*)"Press enter", 12);
+	}
+
+	DWORD dwKey = InputManager::GetInstance()->GetKey();
+
+	if (dwKey & KEY_ENTER)
+	{
+		SceneManager::GetInstance()->SetScene(LOGO);
+		//exit(0);
+	}
 }
 
 void Stage::GameOver()
@@ -395,9 +419,49 @@ void Stage::GameOver()
 
 	if (dwKey & KEY_ENTER)
 	{
-		exit(0);
+		SceneManager::GetInstance()->SetScene(LOGO);
+		//exit(0);
 	}
 }
+
+void Stage::Release()
+{
+	auto iter = ObjectManager::GetInstance()->GetObjectList("Player")->begin();
+	ObjectManager::GetInstance()->ThrowObject(iter,(*iter));
+
+	auto iter1 = ObjectManager::GetInstance()->GetObjectList("Cloud")->begin();
+	ObjectManager::GetInstance()->ThrowObject(iter1, (*iter1));
+
+	for (int i = 0; i < 3; ++i)
+	{
+		list<Object*>* CurrentList = nullptr;
+
+		if (i == 0)
+			CurrentList = pBulletList;
+		
+		else if(i == 1)
+			CurrentList = pBulletList2;
+
+		else if (i == 2)
+			CurrentList = pEnemyList;  // Bridge
+
+		if(CurrentList)
+		{
+			for (auto iter = CurrentList->begin(); iter != CurrentList->end(); )
+			{
+					::Safe_Delete((*iter)->GetBridge());
+					iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
+			}
+		}
+	}						
+}
+	/*			
+	if ((*iter))
+				{
+				}
+	else
+		++iter;
+	*/
 
 // 충돌해야되는 것들
 // 1. 아이템과 플레이어의 충돌 // 음..
