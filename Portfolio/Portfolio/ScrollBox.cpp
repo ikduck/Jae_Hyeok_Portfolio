@@ -5,7 +5,7 @@
 #include "PlayerInfo.h"
 ScrollBox::ScrollBox() : Select(0) { }
 ScrollBox::ScrollBox(Transform _TransInfo) : Select(0) { }
-ScrollBox::~ScrollBox() { }
+ScrollBox::~ScrollBox() { Release(); }
 
 void ScrollBox::Initialize()
 {
@@ -99,29 +99,31 @@ void ScrollBox::Render()
 	// 	TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
 	// 	TransInfo.Position.y + i,
 	// 	TextureList[i]);
-
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 27.0f, (char*)"┌───────────┐", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 28.0f, (char*)"│　     1. 게임 종료　 │", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 29.0f, (char*)"│　　　  　　　　　　　│", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 30.0f, (char*)"│　  2.  Retrun Game   │", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 31.0f, (char*)"│　　  　　　　　　　　│", 15);
-	CursorManager::GetInstance()->WriteBuffer(
-		24.0f, 32.0f, (char*)"└───────────┚", 15);
-
-	if (Select == 0)
+	if(PlayerInfo::GetInstance()->GetGameRE() == true)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			26.0f, 28.0f, (char*)" ▶", 15);
-	}
-	if (Select == 1)
-	{
+			24.0f, 27.0f, (char*)"┌───────────┐", 15);
 		CursorManager::GetInstance()->WriteBuffer(
-			26.0f, 30.0f, (char*)" ▶", 15);
+			24.0f, 28.0f, (char*)"│　     1. 게임 종료　 │", 15);
+		CursorManager::GetInstance()->WriteBuffer(
+			24.0f, 29.0f, (char*)"│　　　  　　　　　　　│", 15);
+		CursorManager::GetInstance()->WriteBuffer(
+			24.0f, 30.0f, (char*)"│　  2.  Retrun Game   │", 15);
+		CursorManager::GetInstance()->WriteBuffer(
+			24.0f, 31.0f, (char*)"│　　  　　　　　　　　│", 15);
+		CursorManager::GetInstance()->WriteBuffer(
+			24.0f, 32.0f, (char*)"└───────────┚", 15);
+
+		if (Select == 0)
+		{
+			CursorManager::GetInstance()->WriteBuffer(
+				26.0f, 28.0f, (char*)" ▶", 15);
+		}
+		if (Select == 1)
+		{
+			CursorManager::GetInstance()->WriteBuffer(
+				26.0f, 30.0f, (char*)" ▶", 15);
+		}
 	}
 }
 

@@ -158,7 +158,7 @@ void Stage::Update()
 	
 							if (CollisionManager::RectCollision(pPlayer, *Enemyiter))
 							{
-								CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+								// CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 	
 								--P_HP;
 								Del_BM = true;
@@ -174,7 +174,7 @@ void Stage::Update()
 									if (CollisionManager::RectCollision(*Bulletiter2, pPlayer))
 									{
 										Bulletiter2 = ObjectManager::GetInstance()->ThrowObject(Bulletiter2, (*Bulletiter2));
-										CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+										// CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 	
 										Del_Player = true;
 									}
@@ -192,7 +192,7 @@ void Stage::Update()
 								{
 									// 기존 이미지 지우고
 									// 터지는 모션 + 리스폰
-									CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
+									// CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
 								}
 								if (P_HP <= 0)
 								{
@@ -213,14 +213,14 @@ void Stage::Update()
 									if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
 									{
 										Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-										CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+										// CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
 	
 										// 에너미 체력 가져오기
 										Enemy->E_Hp -= PB_Damage;
 	
 										if (Enemy->E_Hp <= 0)
 										{
-											CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"적 사망", 15);
+											// CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"적 사망", 15);
 											Del_BM = true;
 										}
 									}
@@ -243,8 +243,7 @@ void Stage::Update()
 						}
 					}
 				}
-				
-				
+
 			}
 			if (Check)
 				pUI->Update();
@@ -276,6 +275,16 @@ void Stage::Render()
 
 void Stage::Enable_UI()
 {
+	/*
+	if (PlayerInfo::GetInstance()->GetGameRE() == false)
+	{
+		Check = false;
+	}
+	else
+	{
+		Check = true;
+	}
+	*/
 	Check = !Check;
 }
 
@@ -316,7 +325,7 @@ void Stage::Bilde_Stage()
 	 
 					E_Count++;
 
-	 				if(E_Count == 10)
+	 				if(E_Count == 30)
 	 				{
 	 	   				// E_Count가 10이 되면 스테이지 넘어감
 	 					Show_Stage++;
