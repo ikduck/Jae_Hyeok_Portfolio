@@ -27,7 +27,7 @@ private:
 	bool Stop_Game;
 	bool Stage_Clear;
 	bool Stage_Over;
-
+	// bool Game_Pause;
 	// stage±¸Çö
 	int Show_Stage = 0;
 	int Count;

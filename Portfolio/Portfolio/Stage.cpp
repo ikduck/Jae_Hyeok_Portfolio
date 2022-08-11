@@ -19,7 +19,7 @@
 #include "EnemyBullet.h"
 #include "PlayerInfo.h"
 
-Stage::Stage() : Check() { }
+Stage::Stage() : Check() , Count1(0) { }
 Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
@@ -27,7 +27,9 @@ void Stage::Initialize()
 	Stage_Over = false;
 	Stop_Game = false;
 	B_Player = false;
+	PlayerInfo::GetInstance()->SetGameRE(false);
 	Check = 0;
+	E_Count = 0;
 	ResetPlayerInfo();
 
 	// 한번만 실행시켜주면 되서 update에 있을 필요가없음
@@ -59,189 +61,194 @@ void Stage::Update()
 	pEnemyList = ObjectManager::GetInstance()->GetObjectList("Enemy");
 	pCloudList = ObjectManager::GetInstance()->GetObjectList("Cloud");
 
-	if (Stop_Game == false)
-	{
-		MoveCount();
-
-		Bilde_Stage();
-		Bilde_BackGround();
-		Score();
-		ShowPlayerLife();
-
-		DWORD dwKey = InputManager::GetInstance()->GetKey();
-
-		if (dwKey & KEY_TAB)
+		if (Stop_Game == false)
 		{
-			// Enable_UI(); 
-		}
+			DWORD dwKey = InputManager::GetInstance()->GetKey();
 
-		if (dwKey & KEY_ESCAPE)
-		{
-			// if (pBulletList->size())
-			// {
-			// 	ObjectPool::GetInstance()->CatchObject(pBulletList->back());
-			// 	pBulletList->pop_back();
-			// }
-		}
-
-		ObjectManager::GetInstance()->Update();
-
-		// 맵밖으로 나가면 지우기
-		if (pBulletList != nullptr)
-		{
-			for (list<Object*>::iterator iter = pBulletList->begin();
-				iter != pBulletList->end(); )
+			if (dwKey & KEY_ESCAPE)
 			{
-				if ((*iter)->GetPosition().y <= 0.0f)
-					iter = pBulletList->erase(iter);
-				else
-					++iter;
+				// if (pBulletList->size())
+				// {
+				// 	ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+				// 	pBulletList->pop_back();
+				// }
+				Enable_UI();
+				PlayerInfo::GetInstance()->SetGameRE(true);
 			}
-		} 
-		if (pBulletList2 != nullptr)
-		{
-			for (list<Object*>::iterator iter = pBulletList2->begin();
-				iter != pBulletList2->end(); )
-			{
-				if ((*iter)->GetPosition().y >= 58.0f)
-					iter = pBulletList2->erase(iter);
-				else
-					++iter;
-			}
-		} 
-		if (pEnemyList != nullptr)
-		{
-			for (list<Object*>::iterator iter = pEnemyList->begin();
-				iter != pEnemyList->end(); )
-			{
-				if ((*iter)->GetPosition().y >= 60.0f)
-					iter = pEnemyList->erase(iter);
-				else if ((*iter)->GetPosition().y < -5.0f)
-					iter = pEnemyList->erase(iter);
-				else if ((*iter)->GetPosition().x < 0.0f)
-					iter = pEnemyList->erase(iter);
-				else if ((*iter)->GetPosition().x > 80.0f)
-					iter = pEnemyList->erase(iter);
-				else
-					++iter;
-			}
-		} 
-		if (pCloudList != nullptr)
-		{
-			for (list<Object*>::iterator iter = pCloudList->begin();
-				iter != pCloudList->end(); )
-			{
-				if ((*iter)->GetPosition().y >= 60.0f)
-					iter = pCloudList->erase(iter);
-				else
-					++iter;
-			}
-		} 
 
-		EnemyBridge* Enemy = new Enemy1;
-
-		// 충돌
-		if (pPlayer != nullptr)
-		{
-			if (pEnemyList != nullptr)
+			if (dwKey & KEY_TAB)
 			{
-				for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
-					Enemyiter != pEnemyList->end(); )
+				// Enable_UI(); 
+			}
+
+			if (PlayerInfo::GetInstance()->GetGameRE() == false)
+			{
+				MoveCount();
+	
+				Bilde_Stage();
+				Bilde_BackGround();
+				Score();
+				ShowPlayerLife();
+	
+				ObjectManager::GetInstance()->Update();
+	
+				// 맵밖으로 나가면 지우기
+				if (pBulletList != nullptr)
 				{
-					Del_BM = false;
-
-					if (CollisionManager::RectCollision(pPlayer, *Enemyiter))
+					for (list<Object*>::iterator iter = pBulletList->begin();
+						iter != pBulletList->end(); )
 					{
-						CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-
-						--P_HP;
-						Del_BM = true;
+						if ((*iter)->GetPosition().y <= 0.0f)
+							iter = pBulletList->erase(iter);
+						else
+							++iter;
 					}
-
-					Del_Player = false;
-					// 플레이어와 적 총알 충돌
-					if (pBulletList2 != nullptr)
+				} 
+				if (pBulletList2 != nullptr)
+				{
+					for (list<Object*>::iterator iter = pBulletList2->begin();
+						iter != pBulletList2->end(); )
 					{
-						for (list<Object*>::iterator Bulletiter2 = pBulletList2->begin();
-							Bulletiter2 != pBulletList2->end(); )
+						if ((*iter)->GetPosition().y >= 58.0f)
+							iter = pBulletList2->erase(iter);
+						else
+							++iter;
+					}
+				} 
+				if (pEnemyList != nullptr)
+				{
+					for (list<Object*>::iterator iter = pEnemyList->begin();
+						iter != pEnemyList->end(); )
+					{
+						if ((*iter)->GetPosition().y >= 60.0f)
+							iter = pEnemyList->erase(iter);
+						else if ((*iter)->GetPosition().y < -5.0f)
+							iter = pEnemyList->erase(iter);
+						else if ((*iter)->GetPosition().x < 0.0f)
+							iter = pEnemyList->erase(iter);
+						else if ((*iter)->GetPosition().x > 80.0f)
+							iter = pEnemyList->erase(iter);
+						else
+							++iter;
+					}
+				} 
+				if (pCloudList != nullptr)
+				{
+					for (list<Object*>::iterator iter = pCloudList->begin();
+						iter != pCloudList->end(); )
+					{
+						if ((*iter)->GetPosition().y >= 60.0f)
+							iter = pCloudList->erase(iter);
+						else
+							++iter;
+					}
+				} 
+	
+				EnemyBridge* Enemy = new Enemy1;
+	
+				// 충돌
+				if (pPlayer != nullptr)
+				{
+					if (pEnemyList != nullptr)
+					{
+						for (list<Object*>::iterator Enemyiter = pEnemyList->begin();
+							Enemyiter != pEnemyList->end(); )
 						{
-							if (CollisionManager::RectCollision(*Bulletiter2, pPlayer))
+							Del_BM = false;
+	
+							if (CollisionManager::RectCollision(pPlayer, *Enemyiter))
 							{
-								Bulletiter2 = ObjectManager::GetInstance()->ThrowObject(Bulletiter2, (*Bulletiter2));
 								CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-
-								Del_Player = true;
+	
+								--P_HP;
+								Del_BM = true;
 							}
-							else
-								++Bulletiter2;
-						}
-					}
-
-					if (Del_Player == true)
-					{
-						// 터지는 이펙트와 Player데미지 닳게	
-						--P_HP;
-
-						if (P_HP == 1)
-						{
-							// 기존 이미지 지우고
-							// 터지는 모션 + 리스폰
-							CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
-						}
-						if (P_HP <= 0)
-						{
-							Stop_Game = true;
-							// GameOver;
-							// ResetPlayerInfo(); // 값전부 초기화를 먼저해주면 안넘어감 
-							// SceneManager::GetInstance()->SetScene(GAMEOVER);
-							// 계속 위치값을 받아오다가 안받와서 터짐
-						}
-					}
-					// GameOver화면 띄우고 -> Logo로 다시이동 // 변수 초기화 
-
-					if (pBulletList != nullptr)
-					{
-						for (list<Object*>::iterator Bulletiter = pBulletList->begin();
-							Bulletiter != pBulletList->end(); )
-						{
-							if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
+	
+							Del_Player = false;
+							// 플레이어와 적 총알 충돌
+							if (pBulletList2 != nullptr)
 							{
-								Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
-								CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
-
-								// 에너미 체력 가져오기
-								Enemy->E_Hp -= PB_Damage;
-
-								if (Enemy->E_Hp <= 0)
+								for (list<Object*>::iterator Bulletiter2 = pBulletList2->begin();
+									Bulletiter2 != pBulletList2->end(); )
 								{
-									CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"적 사망", 15);
-									Del_BM = true;
+									if (CollisionManager::RectCollision(*Bulletiter2, pPlayer))
+									{
+										Bulletiter2 = ObjectManager::GetInstance()->ThrowObject(Bulletiter2, (*Bulletiter2));
+										CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+	
+										Del_Player = true;
+									}
+									else
+										++Bulletiter2;
 								}
 							}
-							else
-								++Bulletiter;
+	
+							if (Del_Player == true)
+							{
+								// 터지는 이펙트와 Player데미지 닳게	
+								--P_HP;
+	
+								if (P_HP == 1)
+								{
+									// 기존 이미지 지우고
+									// 터지는 모션 + 리스폰
+									CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"플레이어 사망", 15);
+								}
+								if (P_HP <= 0)
+								{
+									Stop_Game = true;
+									// GameOver;
+									// ResetPlayerInfo(); // 값전부 초기화를 먼저해주면 안넘어감 
+									// SceneManager::GetInstance()->SetScene(GAMEOVER);
+									// 계속 위치값을 받아오다가 안받와서 터짐
+								}
+							}
+							// GameOver화면 띄우고 -> Logo로 다시이동 // 변수 초기화 
+	
+							if (pBulletList != nullptr)
+							{
+								for (list<Object*>::iterator Bulletiter = pBulletList->begin();
+									Bulletiter != pBulletList->end(); )
+								{
+									if (CollisionManager::RectCollision(*Bulletiter, *Enemyiter))
+									{
+										Bulletiter = ObjectManager::GetInstance()->ThrowObject(Bulletiter, (*Bulletiter));
+										CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다", 15);
+	
+										// 에너미 체력 가져오기
+										Enemy->E_Hp -= PB_Damage;
+	
+										if (Enemy->E_Hp <= 0)
+										{
+											CursorManager::GetInstance()->WriteBuffer(40.0f, 1.0f, (char*)"적 사망", 15);
+											Del_BM = true;
+										}
+									}
+									else
+										++Bulletiter;
+								}
+							}
+	
+							if (Del_BM == true)
+							{
+								Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+								InGame_Score += 100;
+								// 몬스터 아이템 떨구기
+							}
+	
+							if (Del_BM == false)
+							{
+								++Enemyiter;
+							}
 						}
 					}
-
-					if (Del_BM == true)
-					{
-						Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-						InGame_Score += 1000;
-						// 몬스터 아이템 떨구기
-					}
-
-					if (Del_BM == false)
-					{
-						++Enemyiter;
-					}
 				}
+				
+				
 			}
+			if (Check)
+				pUI->Update();
 		}
-
-
-		if (Check)
-			pUI->Update();
-	}	
 
 	if (Stop_Game == true)
 	{
@@ -250,7 +257,11 @@ void Stage::Update()
 
 	if (Stage_Over == true)
 	{
-		GameClear();
+		MoveCount_Stage();
+		if (Count1 > 200)
+		{
+			GameClear();
+		}
 	}
 }
 
@@ -277,6 +288,15 @@ void Stage::MoveCount()
 		Count = 0;
 }
 
+void Stage::MoveCount_Stage()
+{
+	if (Count1 <= 250)
+		++Count1;
+
+	else
+		Count1 = 0;
+}
+
 // stage관련
 void Stage::Bilde_Stage()
 {
@@ -286,7 +306,6 @@ void Stage::Bilde_Stage()
 	 		{
 	 			for (int i = 0; i < 2; ++i)
 	 			{
-	 				// 몬스터 안겹치게 하는법??
 	 				srand(DWORD(GetTickCount64() * (i + 3)));
 	 
 	 				Bridge* pBridge = new Enemy1;
@@ -295,19 +314,18 @@ void Stage::Bilde_Stage()
 	 
 	 				eEnemy->SetPosition(((float)(rand() % 76)), (float)(rand() % 3));
 	 
-	 			++E_Count;
-	 
-	 			if(E_Count == 10)
+					E_Count++;
+
+	 				if(E_Count == 10)
 	 				{
 	 	   				// E_Count가 10이 되면 스테이지 넘어감
-	 				++Show_Stage;
-					Stage_Over = true;
+	 					Show_Stage++;
+						Stage_Over = true;
 	 				}
+
 	 			}
-	 		}  
-	 } 
-	 
-	// Enemy1[] 를 만들어서 넣고 서로 위치가 겹치면 지우고 다시 만들어지게
+	 		}
+	 }
 }
 
 // 구름 리스폰
@@ -424,6 +442,7 @@ void Stage::GameOver()
 	}
 }
 
+
 void Stage::Release()
 {
 	auto iter = ObjectManager::GetInstance()->GetObjectList("Player")->begin();
@@ -453,7 +472,7 @@ void Stage::Release()
 					iter = ObjectManager::GetInstance()->ThrowObject(iter, (*iter));
 			}
 		}
-	}						
+	}
 }
 	/*			
 	if ((*iter))

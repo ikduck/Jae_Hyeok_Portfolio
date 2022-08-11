@@ -150,7 +150,26 @@ void Menu::Render()
 		61.5f, 54.0f, (char*)"戌式式式式式戎 ", Color1);
 	// 80 3偃 3 
 
+	CursorManager::GetInstance()->WriteBuffer(
+		59.0f, 7.0f, (char*)"Lightning", 9);
+	CursorManager::GetInstance()->WriteBuffer(
+		60.0f, 9.0f, (char*)"P - 38", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		52.0f, 10.0f, (char*)"CREW: 1 LEMGTH : 11.53m", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		52.0f, 11.0f, (char*)"   WIMGSPAM : 15.85m", 15);
+
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 34.0f, (char*)"MAX OUTPUT : 1600hp/3100rpm", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 35.0f, (char*)" MAX SPEED : 666km/h7620m", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 36.0f, (char*)"        WEIGHT : 7435kg", 15);
 }
+
+/*
+
+*/
 
 void Menu::MoveCount()
 {

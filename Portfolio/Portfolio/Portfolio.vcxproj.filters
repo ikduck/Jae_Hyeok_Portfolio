@@ -133,6 +133,9 @@
     <Filter Include="소스 파일\02. Object\Boss\BossBridge\Boss1">
       <UniqueIdentifier>{97b0a5fb-d66c-4bf7-97bd-4e7c46488999}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Scene\Stage\Stage1">
+      <UniqueIdentifier>{2abc6295-a97f-4b46-83ef-d2dba639135c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -221,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="Boss1.cpp">
       <Filter>소스 파일\02. Object\Boss\BossBridge\Boss1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>소스 파일\01. Scene\Stage\Stage1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +352,9 @@
     </ClInclude>
     <ClInclude Include="Boss1.h">
       <Filter>소스 파일\02. Object\Boss\BossBridge\Boss1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>소스 파일\01. Scene\Stage\Stage1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

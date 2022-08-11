@@ -10,7 +10,7 @@
 #include "ObjectFactory.h"
 #include"CursorManager.h"
 
-Logo::Logo() : Color(0) , Count(0) {  }
+Logo::Logo() : Color(0) , Count(0), Count1(0) {  }
 
 Logo::~Logo() { }
 
@@ -21,6 +21,22 @@ void Logo::Initialize()
 
 void Logo::Update()
 {
+	MoveCount();
+	MoveCount2();
+
+	if (Count1 >= 0 && Count1 <= 15)
+	{
+		Color = 15;
+	}
+	else if (Count1 >= 16 && Count1 <= 30)
+	{
+		Color = 9;
+	}
+	else if (Count1 >= 31 && Count1 <= 45)
+	{
+		Color = 14;
+	}
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_ENTER)
@@ -31,8 +47,7 @@ void Logo::Update()
 
 void Logo::Render()
 {
-	MoveCount();
-	
+
 	CursorManager::GetInstance()->WriteBuffer(
 		10.5f, 15.0f, (char*)"  #####  ####### ######  ### #    # ####### ######   ##### ", Color);
 	CursorManager::GetInstance()->WriteBuffer(
@@ -48,9 +63,9 @@ void Logo::Render()
 	CursorManager::GetInstance()->WriteBuffer(
 		10.5f, 21.0f, (char*)"  #####     #    #     # ### #    # ####### #     #  ##### ", Color);
 	CursorManager::GetInstance()->WriteBuffer(
-		10.0f, 22.0f, (char*)"式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式", Color);
+		10.0f, 22.0f, (char*)"式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式", 15);
 	CursorManager::GetInstance()->WriteBuffer(
-		10.0f, 23.0f, (char*)"式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式", Color);
+		10.0f, 23.0f, (char*)"式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式", 15);
 	CursorManager::GetInstance()->WriteBuffer(
 		21.0f, 25.0f, (char*)"   #     ######     #          ####### ", Color);
 	CursorManager::GetInstance()->WriteBuffer(
@@ -68,7 +83,7 @@ void Logo::Render()
 	if(Count >= 5 && Count <= 25)
 	{
 	CursorManager::GetInstance()->WriteBuffer(
-		30.0f, 40.0f, (char*)"Press enter to start", Color);
+		30.0f, 40.0f, (char*)"Press enter to start", 12);
 	}
 
 }
@@ -80,6 +95,15 @@ void Logo::MoveCount()
 
 	else
 		Count = 0;
+}
+
+void Logo::MoveCount2()
+{
+	if (Count1 < 45)
+		++Count1;
+
+	else
+		Count1 = 0;
 }
 
 void Logo::Release()

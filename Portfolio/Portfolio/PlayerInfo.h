@@ -5,7 +5,7 @@ class PlayerInfo
 {
 protected:
 	int PlayerType;
-
+	bool GameRE;
 	// int P_HP;
 	// int P_Damage;
 	// int Score;
@@ -25,8 +25,12 @@ public:
 	void SetPlayerInfo();
 
 	
-	void SetPlayerType(int _PlayerType) { PlayerType = _PlayerType; }
+	void SetGameRE(int _GameRE) { GameRE = _GameRE; }
+	bool GetGameRE() const { return GameRE; }
+
+	void SetPlayerType(bool _PlayerType) { PlayerType = _PlayerType; }
 	int GetPlayerType() const { return PlayerType; }
+
 	/*
 	void SetPlayerHp(int _P_HP) { P_HP = _P_HP; }
 	int GetPlayerHp() const { return P_HP; }

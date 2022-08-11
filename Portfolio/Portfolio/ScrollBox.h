@@ -3,6 +3,8 @@
 
 class ScrollBox : public UserInterface
 {
+private:
+	int Select;
 public:
 	virtual void Initialize();
 	virtual int Update();
