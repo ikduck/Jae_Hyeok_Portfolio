@@ -273,7 +273,6 @@ void Stage::Render()
 	 	pUI->Render();
 }
 
-
 void Stage::Enable_UI()
 {
 	Check = !Check;
@@ -488,3 +487,6 @@ void Stage::Release()
 /*
 
 */
+
+// key값 넣어서 
+// 멀티맵 -> 
