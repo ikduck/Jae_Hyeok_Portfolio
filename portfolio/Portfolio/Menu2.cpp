@@ -153,7 +153,22 @@ void Menu2::Render()
 		61.5f, 53.0f, (char*)"│   soon   │", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
 		61.5f, 54.0f, (char*)"└─────┘ ", Color1);
+	
+	CursorManager::GetInstance()->WriteBuffer(
+		59.0f, 7.0f, (char*)"Mustang", 10);
+	CursorManager::GetInstance()->WriteBuffer(
+		60.0f, 9.0f, (char*)"P - 51", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		52.0f, 10.0f, (char*)"CREW: 1 LEMGTH : 9.83m", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		52.0f, 11.0f, (char*)"   WIMGSPAM : 11.28m", 15);
 
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 34.0f, (char*)"MAX OUTPUT : 1720hp/3000rpm", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 35.0f, (char*)" MAX SPEED : 703km/h7620m", 15);
+	CursorManager::GetInstance()->WriteBuffer(
+		47.0f, 36.0f, (char*)"        WEIGHT : 4583kg", 15);
 }
 
 void Menu2::Release() 
@@ -161,3 +176,4 @@ void Menu2::Release()
 }
 
 // 뭘해야되지?
+// 사운드 구매 or 로고 띄워주고 무료로 받기
