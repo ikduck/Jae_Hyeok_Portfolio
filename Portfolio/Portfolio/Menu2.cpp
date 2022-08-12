@@ -153,7 +153,8 @@ void Menu2::Render()
 		61.5f, 53.0f, (char*)"弛   soon   弛", Color1);
 	CursorManager::GetInstance()->WriteBuffer(
 		61.5f, 54.0f, (char*)"戌式式式式式戎 ", Color1);
-	
+
+
 	CursorManager::GetInstance()->WriteBuffer(
 		59.0f, 7.0f, (char*)"Mustang", 10);
 	CursorManager::GetInstance()->WriteBuffer(
